@@ -1,6 +1,7 @@
 import { Webhook } from "svix";
 import { headers } from "next/headers";
 import { WebhookEvent } from "@clerk/nextjs/server";
+
 import { db } from "@/db";
 import { users } from "@/db/schema";
 import { eq } from "drizzle-orm";
@@ -59,7 +60,9 @@ export async function POST(req: Request) {
   // const name = !data.first_name ? DataTransfer.email_addresses[0].email_address
 
   if (eventType === "user.created") {
+    console.log("TEST");
     const { data } = evt;
+
     await db.insert(users).values({
       clerkId: data.id,
       name: `${data.first_name} ${data.last_name}`,
