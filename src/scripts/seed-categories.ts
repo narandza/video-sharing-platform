@@ -28,7 +28,7 @@ async function main() {
       description: `Videos related to ${name.toLocaleLowerCase()}`,
     }));
 
-    db.insert(categories).values(values);
+    await db.insert(categories).values(values);
 
     console.log("Categories seeded successfully.");
   } catch (error) {
