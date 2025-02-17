@@ -1,5 +1,7 @@
 "use client";
 
+import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
+
 interface FilterCarouselProps {
   value?: string | null;
   isLoading?: boolean;
@@ -16,5 +18,19 @@ export const FilterCarousel = ({
   onSelect,
   data,
 }: FilterCarouselProps) => {
-  return <div className=""></div>;
+  return (
+    <div className="relative w-full">
+      <Carousel
+        opts={{
+          align: "start",
+          dragFree: true,
+        }}
+        className="w-full px-12"
+      >
+        <CarouselContent className="-ml-3">
+          <CarouselItem></CarouselItem>
+        </CarouselContent>
+      </Carousel>
+    </div>
+  );
 };
