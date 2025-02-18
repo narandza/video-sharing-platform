@@ -4,11 +4,13 @@ import { cn } from "@/lib/utils";
 import { Badge } from "./ui/badge";
 import {
   Carousel,
+  CarouselApi,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
 } from "./ui/carousel";
+import { useEffect, useState } from "react";
 
 interface FilterCarouselProps {
   value?: string | null;
@@ -26,17 +28,34 @@ export const FilterCarousel = ({
   onSelect,
   data,
 }: FilterCarouselProps) => {
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!api) return;
+
+    setCount(api.scrollSnapList().length);
+
+    setCurrent(api.selectedScrollSnap() + 1);
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1);
+    });
+  }, [api]);
+
   return (
     <div className="relative w-full flex">
       {/* Left fade */}
       <div
         className={cn(
           "absolute left-12 top-0 bottom-0 w-12 z-10 bg-gradient-to-r from-white to-transparent pointer-events-none",
-          false && "hidden"
+          current === 1 && "hidden"
         )}
       />
 
       <Carousel
+        setApi={setApi}
         opts={{
           align: "start",
           dragFree: true,
@@ -67,11 +86,12 @@ export const FilterCarousel = ({
         <CarouselPrevious className="left-0 z-20" />
         <CarouselNext className="right-0 z-20" />
       </Carousel>
+
       {/* Right fade */}
       <div
         className={cn(
           "absolute right-12 top-0 bottom-0 w-12 z-10 bg-gradient-to-l from-white to-transparent pointer-events-none",
-          false && "hidden"
+          current === count && "hidden"
         )}
       />
     </div>
