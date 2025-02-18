@@ -20,7 +20,7 @@ export const FilterCarousel = ({
   data,
 }: FilterCarouselProps) => {
   return (
-    <div className="relative w-full">
+    <div className="relative w-full flex">
       <Carousel
         opts={{
           align: "start",
@@ -29,14 +29,25 @@ export const FilterCarousel = ({
         className="w-full px-12"
       >
         <CarouselContent className="-ml-3">
-          <CarouselItem>
+          <CarouselItem className="pl-3 basis-auto">
             <Badge
               variant={value === "null" ? "default" : "secondary"}
-              className="rounded-lg px-3 py-1 cursor-pointer whitespace-nowrap text-smp"
+              className="rounded-lg px-3 py-1 cursor-pointer whitespace-nowrap text-sm"
             >
               All
             </Badge>
           </CarouselItem>
+          {!isLoading &&
+            data.map((item) => (
+              <CarouselItem key={item.value} className="pl-3 basis-auto">
+                <Badge
+                  variant={value === "null" ? "default" : "secondary"}
+                  className="rounded-lg px-3 py-1 cursor-pointer whitespace-nowrap text-sm"
+                >
+                  {item.label}
+                </Badge>
+              </CarouselItem>
+            ))}
         </CarouselContent>
       </Carousel>
     </div>
