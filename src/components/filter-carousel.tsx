@@ -1,7 +1,14 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { Badge } from "./ui/badge";
-import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "./ui/carousel";
 
 interface FilterCarouselProps {
   value?: string | null;
@@ -21,6 +28,14 @@ export const FilterCarousel = ({
 }: FilterCarouselProps) => {
   return (
     <div className="relative w-full flex">
+      {/* Left fade */}
+      <div
+        className={cn(
+          "absolute left-12 top-0 bottom-0 w-12 z-10 bg-gradient-to-r from-white to-transparent pointer-events-none",
+          false && "hidden"
+        )}
+      />
+
       <Carousel
         opts={{
           align: "start",
@@ -49,7 +64,16 @@ export const FilterCarousel = ({
               </CarouselItem>
             ))}
         </CarouselContent>
+        <CarouselPrevious className="left-0 z-20" />
+        <CarouselNext className="right-0 z-20" />
       </Carousel>
+      {/* Right fade */}
+      <div
+        className={cn(
+          "absolute right-12 top-0 bottom-0 w-12 z-10 bg-gradient-to-l from-white to-transparent pointer-events-none",
+          false && "hidden"
+        )}
+      />
     </div>
   );
 };
