@@ -1,5 +1,6 @@
 "use client";
 
+import { Badge } from "./ui/badge";
 import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
 
 interface FilterCarouselProps {
@@ -28,7 +29,14 @@ export const FilterCarousel = ({
         className="w-full px-12"
       >
         <CarouselContent className="-ml-3">
-          <CarouselItem></CarouselItem>
+          <CarouselItem>
+            <Badge
+              variant={value === "null" ? "default" : "secondary"}
+              className="rounded-lg px-3 py-1 cursor-pointer whitespace-nowrap text-smp"
+            >
+              All
+            </Badge>
+          </CarouselItem>
         </CarouselContent>
       </Carousel>
     </div>
