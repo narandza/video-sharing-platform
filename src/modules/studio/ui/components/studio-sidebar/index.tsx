@@ -1,7 +1,7 @@
 import { Separator } from "@/components/ui/separator";
-import { MainSection } from "./main-section";
-
 import { Sidebar, SidebarContent } from "@/components/ui/sidebar";
+
+import { MainSection } from "./main-section";
 import { PersonalSection } from "./personal-section";
 
 export const StudioSidebar = () => {
