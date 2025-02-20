@@ -11,8 +11,9 @@ import {
 } from "@/components/ui/sidebar";
 
 import Link from "next/link";
-import { LogOutIcon, VideoIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { LogOutIcon, VideoIcon } from "lucide-react";
+
 import { StudioSidebarHeader } from "./studio-sidebar-header";
 
 export const StudioSidebar = () => {

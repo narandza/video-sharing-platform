@@ -1,7 +1,9 @@
 import { VariantProps, cva } from "class-variance-authority";
-import { Avatar } from "./ui/avatar";
-import { AvatarImage } from "@radix-ui/react-avatar";
+
 import { cn } from "@/lib/utils";
+import { AvatarImage } from "@radix-ui/react-avatar";
+
+import { Avatar } from "./ui/avatar";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const avatarVariants = cva("", {
