@@ -1,5 +1,9 @@
-import { cva } from "class-variance-authority";
+import { VariantProps, cva } from "class-variance-authority";
+import { Avatar } from "./ui/avatar";
+import { AvatarImage } from "@radix-ui/react-avatar";
+import { cn } from "@/lib/utils";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const avatarVariants = cva("", {
   variants: {
     size: {
@@ -15,4 +19,28 @@ const avatarVariants = cva("", {
   },
 });
 
-export const UserAvatar = () => {};
+interface UserAvatarProps extends VariantProps<typeof avatarVariants> {
+  imageUrl: string;
+  name: string;
+  className?: string;
+  onClick?: () => void;
+}
+
+export const UserAvatar = ({
+  imageUrl,
+  name,
+  size,
+  className,
+  onClick,
+}: UserAvatarProps) => {
+  return (
+    <Avatar>
+      <AvatarImage
+        src={imageUrl}
+        alt={name}
+        className={cn(avatarVariants({ size, className }))}
+        onClick={onClick}
+      />
+    </Avatar>
+  );
+};
