@@ -18,7 +18,7 @@ export const VideosSection = () => {
       className="
     "
     >
-      videos section
+      {JSON.stringify(data)}
     </div>
   );
 };
