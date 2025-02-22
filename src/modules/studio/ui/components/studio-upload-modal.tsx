@@ -3,9 +3,16 @@
 import { Loader2Icon, PlusIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { trpc } from "@/trpc/client";
+import { toast } from "sonner";
 
 export const StudioUploadModal = () => {
-  const create = trpc.videos.create.useMutation();
+  const utils = trpc.useUtils();
+  const create = trpc.videos.create.useMutation({
+    onSuccess: () => {
+      toast.success("Video created");
+      utils.studio.getMany.invalidate();
+    },
+  });
 
   return (
     <Button
