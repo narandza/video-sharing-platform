@@ -13,12 +13,5 @@ export const VideosSection = () => {
     }
   );
 
-  return (
-    <div
-      className="
-    "
-    >
-      {JSON.stringify(data)}
-    </div>
-  );
+  return <div className="">{JSON.stringify(data)}</div>;
 };
