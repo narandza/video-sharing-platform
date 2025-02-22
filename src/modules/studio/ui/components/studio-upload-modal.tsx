@@ -1,9 +1,10 @@
 "use client";
 
+import { toast } from "sonner";
 import { Loader2Icon, PlusIcon } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { trpc } from "@/trpc/client";
-import { toast } from "sonner";
 
 export const StudioUploadModal = () => {
   const utils = trpc.useUtils();

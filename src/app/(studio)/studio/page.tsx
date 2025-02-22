@@ -1,6 +1,6 @@
 import { DEFAULT_LIMIT } from "@/constants";
-import { StudioView } from "@/modules/studio/ui/view/studio-view";
 import { HydrateClient, trpc } from "@/trpc/server";
+import { StudioView } from "@/modules/studio/ui/view/studio-view";
 
 const Page = async () => {
   void trpc.studio.getMany.prefetchInfinite({

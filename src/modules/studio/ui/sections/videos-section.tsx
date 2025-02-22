@@ -1,7 +1,7 @@
 "use client";
 
-import { DEFAULT_LIMIT } from "@/constants";
 import { trpc } from "@/trpc/client";
+import { DEFAULT_LIMIT } from "@/constants";
 
 export const VideosSection = () => {
   const [data] = trpc.studio.getMany.useSuspenseInfiniteQuery(
