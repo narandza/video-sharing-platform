@@ -5,7 +5,15 @@ import { DEFAULT_LIMIT } from "@/constants";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { InfiniteScroll } from "@/components/infinite-scroll";
-import { Table, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import Link from "next/link";
 
 export const VideosSection = () => {
   return (
@@ -18,7 +26,7 @@ export const VideosSection = () => {
 };
 
 const VideosSectionSuspense = () => {
-  const [data, query] = trpc.studio.getMany.useSuspenseInfiniteQuery(
+  const [videos, query] = trpc.studio.getMany.useSuspenseInfiniteQuery(
     {
       limit: DEFAULT_LIMIT,
     },
@@ -41,9 +49,28 @@ const VideosSectionSuspense = () => {
               <TableHead className="text-right pr-6">Likes</TableHead>
             </TableRow>
           </TableHeader>
+          <TableBody>
+            {videos.pages
+              .flatMap((page) => page.items)
+              .map((video) => (
+                <Link
+                  href={`/studio/videos/${video.id}`}
+                  key={video.id}
+                  legacyBehavior
+                >
+                  <TableRow className="cursor-pointer">
+                    <TableCell>{video.title}</TableCell>
+                    <TableCell>Visibility</TableCell>
+                    <TableCell>status</TableCell>
+                    <TableCell>views</TableCell>
+                    <TableCell>comments</TableCell>
+                    <TableCell>likes </TableCell>
+                  </TableRow>
+                </Link>
+              ))}
+          </TableBody>
         </Table>
       </div>
-      {JSON.stringify(data)}
 
       <InfiniteScroll
         hasNextPage={query.hasNextPage}
