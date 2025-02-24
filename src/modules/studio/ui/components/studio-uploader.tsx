@@ -11,7 +11,7 @@ export const StudioUploader = ({
 }: StudioUploaderProps) => {
   return (
     <div className="">
-      <MuxUploader />
+      <MuxUploader endpoint={endpoint} />
     </div>
   );
 };
