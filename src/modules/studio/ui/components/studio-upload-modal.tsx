@@ -6,6 +6,7 @@ import { Loader2Icon, PlusIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { trpc } from "@/trpc/client";
 import { ResponsiveModal } from "@/components/responsive-modal";
+import { StudioUploader } from "./studio-uploader";
 
 export const StudioUploadModal = () => {
   const utils = trpc.useUtils();
@@ -26,7 +27,7 @@ export const StudioUploadModal = () => {
         open={!!create.data}
         onOpenChange={() => create.reset()}
       >
-        <p className="">This will be an uploader</p>
+        <StudioUploader />
       </ResponsiveModal>
       <Button
         variant="secondary"
