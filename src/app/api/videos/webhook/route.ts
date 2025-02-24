@@ -1,14 +1,15 @@
+import { eq } from "drizzle-orm";
+import { headers } from "next/headers";
+
 import { db } from "@/db";
-import { videos } from "@/db/schema";
 import { mux } from "@/lib/mux";
+import { videos } from "@/db/schema";
 import {
   VideoAssetCreatedWebhookEvent,
   VideoAssetErroredWebhookEvent,
   VideoAssetReadyWebhookEvent,
   VideoAssetTrackReadyWebhookEvent,
 } from "@mux/mux-node/resources/webhooks.mjs";
-import { eq } from "drizzle-orm";
-import { headers } from "next/headers";
 
 const SIGNING_SECRET = process.env.MUX_WEBHOOK_SECRET;
 

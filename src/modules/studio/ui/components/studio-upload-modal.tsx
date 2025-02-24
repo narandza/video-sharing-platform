@@ -3,9 +3,10 @@
 import { toast } from "sonner";
 import { Loader2Icon, PlusIcon } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import { trpc } from "@/trpc/client";
+import { Button } from "@/components/ui/button";
 import { ResponsiveModal } from "@/components/responsive-modal";
+
 import { StudioUploader } from "./studio-uploader";
 
 export const StudioUploadModal = () => {
