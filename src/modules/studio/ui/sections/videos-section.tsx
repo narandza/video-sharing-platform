@@ -16,6 +16,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { VideoThumbnail } from "@/modules/videos/ui/components/video-thumnail";
+import { snakeCaseToTitle } from "@/lib/utils";
 
 export const VideosSection = () => {
   return (
@@ -83,7 +84,11 @@ const VideosSectionSuspense = () => {
                       </div>
                     </TableCell>
                     <TableCell>Visibility</TableCell>
-                    <TableCell>status</TableCell>
+                    <TableCell>
+                      <div className="flex items-center">
+                        {snakeCaseToTitle(video.muxStatus || "error")}
+                      </div>
+                    </TableCell>
                     <TableCell>date</TableCell>
                     <TableCell>views</TableCell>
                     <TableCell>comments</TableCell>
