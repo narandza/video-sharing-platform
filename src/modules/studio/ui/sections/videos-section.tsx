@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Suspense } from "react";
+import { format } from "date-fns";
 
 import { trpc } from "@/trpc/client";
 import { DEFAULT_LIMIT } from "@/constants";
@@ -89,7 +90,9 @@ const VideosSectionSuspense = () => {
                         {snakeCaseToTitle(video.muxStatus || "error")}
                       </div>
                     </TableCell>
-                    <TableCell>date</TableCell>
+                    <TableCell className="text-sm truncate">
+                      {format(new Date(video.createdAt), "d MMM yyyy")}
+                    </TableCell>
                     <TableCell>views</TableCell>
                     <TableCell>comments</TableCell>
                     <TableCell>likes </TableCell>
