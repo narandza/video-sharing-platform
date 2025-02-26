@@ -19,14 +19,48 @@ import {
 import { VideoThumbnail } from "@/modules/videos/ui/components/video-thumnail";
 import { snakeCaseToTitle } from "@/lib/utils";
 import { Globe2Icon, LockIcon } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export const VideosSection = () => {
   return (
-    <Suspense fallback={<p>Loading...</p>}>
+    <Suspense fallback={<VideosSectionSkeleton />}>
       <ErrorBoundary fallback={<p>Error</p>}>
         <VideosSectionSuspense />
       </ErrorBoundary>
     </Suspense>
+  );
+};
+
+const VideosSectionSkeleton = () => {
+  return (
+    <>
+      <div className="border-y">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="pl-6 w-[510px]">Video</TableHead>
+              <TableHead>Visibility</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead>Date</TableHead>
+              <TableHead className="text-right">Views</TableHead>
+              <TableHead className="text-right">Comments</TableHead>
+              <TableHead className="text-right pr-6">Likes</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {Array.from({ length: 5 }).map((_, index) => (
+              <TableRow key={index}>
+                <TableCell className="pl-6">
+                  <div className="flex items-center gap-4">
+                    <Skeleton className="h-20 w-36" />
+                  </div>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+    </>
   );
 };
 
