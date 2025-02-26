@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/table";
 import { VideoThumbnail } from "@/modules/videos/ui/components/video-thumnail";
 import { snakeCaseToTitle } from "@/lib/utils";
+import { Globe2Icon, LockIcon } from "lucide-react";
 
 export const VideosSection = () => {
   return (
@@ -84,7 +85,16 @@ const VideosSectionSuspense = () => {
                         </div>
                       </div>
                     </TableCell>
-                    <TableCell>Visibility</TableCell>
+                    <TableCell>
+                      <div className="flex items-center">
+                        {video.visibility === "private" ? (
+                          <LockIcon className="size-4 mr-2" />
+                        ) : (
+                          <Globe2Icon className="size-4 mr-2" />
+                        )}
+                        {snakeCaseToTitle(video.visibility)}
+                      </div>
+                    </TableCell>
                     <TableCell>
                       <div className="flex items-center">
                         {snakeCaseToTitle(video.muxStatus || "error")}
