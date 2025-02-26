@@ -9,7 +9,8 @@ import {
   VideoAssetErroredWebhookEvent,
   VideoAssetReadyWebhookEvent,
   VideoAssetTrackReadyWebhookEvent,
-} from "@mux/mux-node/resources/webhooks.mjs";
+  VideoAssetDeletedWebhookEvent,
+} from "@mux/mux-node/resources/webhooks";
 
 const SIGNING_SECRET = process.env.MUX_WEBHOOK_SECRET;
 
@@ -17,7 +18,8 @@ type WebhookEvent =
   | VideoAssetCreatedWebhookEvent
   | VideoAssetReadyWebhookEvent
   | VideoAssetErroredWebhookEvent
-  | VideoAssetTrackReadyWebhookEvent;
+  | VideoAssetTrackReadyWebhookEvent
+  | VideoAssetDeletedWebhookEvent;
 
 export const POST = async (request: Request) => {
   if (!SIGNING_SECRET) {
@@ -108,6 +110,16 @@ export const POST = async (request: Request) => {
         .where(eq(videos.muxUploadId, data.upload_id));
 
       break;
+    }
+
+    case "video.asset.deleted": {
+      const data = payload.data as VideoAssetDeletedWebhookEvent["data"];
+
+      if (!data.upload_id) {
+        return new Response("No upload ID found", { status: 400 });
+      }
+
+      await db.delete(videos).where(eq(videos.muxUploadId, data.upload_id));
     }
   }
 
