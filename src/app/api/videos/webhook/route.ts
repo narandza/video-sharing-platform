@@ -61,6 +61,7 @@ export const POST = async (request: Request) => {
         .where(eq(videos.muxUploadId, data.upload_id));
       break;
     }
+
     case "video.asset.ready": {
       const data = payload.data as VideoAssetReadyWebhookEvent["data"];
 
@@ -91,6 +92,21 @@ export const POST = async (request: Request) => {
           duration,
         })
         .where(eq(videos.muxUploadId, data.upload_id));
+      break;
+    }
+
+    case "video.asset.errored": {
+      const data = payload.data as VideoAssetErroredWebhookEvent["data"];
+
+      if (!data.upload_id) {
+        return new Response("No upload ID found", { status: 400 });
+      }
+
+      await db
+        .update(videos)
+        .set({ muxStatus: data.status })
+        .where(eq(videos.muxUploadId, data.upload_id));
+
       break;
     }
   }
