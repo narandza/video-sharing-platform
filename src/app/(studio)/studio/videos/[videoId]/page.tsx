@@ -1,4 +1,4 @@
-import { trpc } from "@/trpc/server";
+import { HydrateClient, trpc } from "@/trpc/server";
 
 export const dynamic = "force-dynamic";
 
@@ -11,7 +11,11 @@ const Page = async ({ params }: PageProps) => {
 
   void trpc.studio.getOne({ id: videoId });
 
-  return <div className="">video id</div>;
+  return (
+    <HydrateClient>
+      <VideoView videoId={videoID} />
+    </HydrateClient>
+  );
 };
 
 export default Page;
