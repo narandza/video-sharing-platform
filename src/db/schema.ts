@@ -1,4 +1,9 @@
 import {
+  createInsertSchema,
+  createSelectSchema,
+  createUpdateSchema,
+} from "drizzle-zod";
+import {
   integer,
   pgEnum,
   pgTable,
@@ -8,12 +13,6 @@ import {
   uuid,
 } from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
-
-import {
-  createInsertSchema,
-  createSelectSchema,
-  createUpdateSchema,
-} from "drizzle-zod";
 
 export const users = pgTable(
   "users",

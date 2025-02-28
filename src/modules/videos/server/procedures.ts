@@ -1,9 +1,10 @@
+import { and, eq } from "drizzle-orm";
+
 import { db } from "@/db";
 import { mux } from "@/lib/mux";
+import { TRPCError } from "@trpc/server";
 import { videoUpdateSchema, videos } from "@/db/schema";
 import { createTRPCRouter, protectedProcedure } from "@/trpc/init";
-import { and, eq } from "drizzle-orm";
-import { TRPCError } from "@trpc/server";
 
 export const videosRouter = createTRPCRouter({
   update: protectedProcedure
