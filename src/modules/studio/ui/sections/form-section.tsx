@@ -15,6 +15,15 @@ import { ErrorBoundary } from "react-error-boundary";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 
 interface FormSectionProps {
   videoId: string;
@@ -47,32 +56,53 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
   };
 
   return (
-    <div className="flex items-center justify-between mb-6">
-      <div className="">
-        <h1 className="text-2xl font-bold">Video details</h1>
-        <p className="text-xs text-muted-foreground">
-          Manage your video details
-        </p>
-      </div>
-      <div className="flex items-center gap-x-2">
-        <Button type="submit" disabled={false}>
-          Save
-        </Button>
-
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon">
-              <MoreVerticalIcon />
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+        <div className="flex items-center justify-between mb-6">
+          <div className="">
+            <h1 className="text-2xl font-bold">Video details</h1>
+            <p className="text-xs text-muted-foreground">
+              Manage your video details
+            </p>
+          </div>
+          <div className="flex items-center gap-x-2">
+            <Button type="submit" disabled={false}>
+              Save
             </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuItem>
-              <TrashIcon className="size-4 mr-2" />
-              Delete
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </div>
-    </div>
+
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <MoreVerticalIcon />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem>
+                  <TrashIcon className="size-4 mr-2" />
+                  Delete
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+          <div className="space-y-8 lg:col-span-3">
+            <FormField
+              control={form.control}
+              name="title"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Title</FormLabel>
+                  <FormControl>
+                    <Input {...field} placeholder="Add a title to your video" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+        </div>
+      </form>
+    </Form>
   );
 };
