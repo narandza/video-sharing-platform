@@ -1,6 +1,7 @@
 "use client";
 
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 import { Loader2Icon, PlusIcon } from "lucide-react";
 
 import { trpc } from "@/trpc/client";
@@ -8,7 +9,6 @@ import { Button } from "@/components/ui/button";
 import { ResponsiveModal } from "@/components/responsive-modal";
 
 import { StudioUploader } from "./studio-uploader";
-import { useRouter } from "next/navigation";
 
 export const StudioUploadModal = () => {
   const router = useRouter();

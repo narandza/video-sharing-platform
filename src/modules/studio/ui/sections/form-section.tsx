@@ -1,9 +1,10 @@
 "use client";
 
 import { z } from "zod";
+import Link from "next/link";
 import { toast } from "sonner";
-import { Suspense, useState } from "react";
 import { useForm } from "react-hook-form";
+import { Suspense, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import {
   CopyCheckIcon,
@@ -16,9 +17,9 @@ import {
 
 import { trpc } from "@/trpc/client";
 import { Input } from "@/components/ui/input";
+import { snakeCaseToTitle } from "@/lib/utils";
 import { videoUpdateSchema } from "@/db/schema";
 import { Button } from "@/components/ui/button";
-
 import { Textarea } from "@/components/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -43,8 +44,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { VideoPlayer } from "@/modules/videos/ui/components/video-player";
-import Link from "next/link";
-import { snakeCaseToTitle } from "@/lib/utils";
 
 interface FormSectionProps {
   videoId: string;
