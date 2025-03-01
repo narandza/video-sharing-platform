@@ -236,6 +236,16 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
                     </p>
                   </div>
                 </div>
+                <div className="flex justify-between items-center ">
+                  <div className="flex flex-col gap-y-1">
+                    <p className="text-muted-foreground text-xs">
+                      Subtitles status
+                    </p>
+                    <p className="text-sm">
+                      {snakeCaseToTitle(video.muxTrackStatus || "no_subtitles")}
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
