@@ -83,7 +83,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <div className="flex items-center justify-between mb-6">
-          <div className="">
+          <div>
             <h1 className="text-2xl font-bold">Video details</h1>
             <p className="text-xs text-muted-foreground">
               Manage your video details
@@ -93,7 +93,6 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
             <Button type="submit" disabled={update.isPending}>
               Save
             </Button>
-
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon">
@@ -171,6 +170,13 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
                 </FormItem>
               )}
             />
+          </div>
+          <div className="flex flex-col gap-y-8 lg:col-span-2">
+            <div className="flex flex-col gap-4 bg-[#f9f9f9] rounded-xl overflow-hidden h-fit">
+              <div className="aspect-video overflow-hidden relative">
+                video player
+              </div>
+            </div>
           </div>
         </div>
       </form>
