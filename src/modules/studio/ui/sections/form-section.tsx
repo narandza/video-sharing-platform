@@ -2,10 +2,15 @@
 
 import { z } from "zod";
 import { toast } from "sonner";
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import { useForm } from "react-hook-form";
 import { ErrorBoundary } from "react-error-boundary";
-import { CopyIcon, MoreVerticalIcon, TrashIcon } from "lucide-react";
+import {
+  CopyCheckIcon,
+  CopyIcon,
+  MoreVerticalIcon,
+  TrashIcon,
+} from "lucide-react";
 
 import { trpc } from "@/trpc/client";
 import { Input } from "@/components/ui/input";
@@ -79,6 +84,22 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 
   const onSubmit = async (data: z.infer<typeof videoUpdateSchema>) => {
     await update.mutateAsync(data);
+  };
+
+  const fullUrl = `${
+    process.env.VERCEL_URL || "http://localhost:3000"
+  }/videos/${videoId}`;
+
+  const [isCopied, setIsCopied] = useState(false);
+
+  const onCopy = async () => {
+    await navigator.clipboard.writeText(fullUrl);
+
+    setIsCopied(true);
+
+    setTimeout(() => {
+      setIsCopied(false);
+    }, 2000);
   };
 
   return (
@@ -188,7 +209,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
                     <div className="flex items-center gap-x-2">
                       <Link href={`/videos/${video.id}`}>
                         <p className="line-clamp-1 text-sm text-blue-500">
-                          http://localhost:3000/123
+                          {fullUrl}
                         </p>
                       </Link>
                       <Button
@@ -196,10 +217,10 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
                         variant="ghost"
                         size="icon"
                         className="shrink-0"
-                        onClick={() => {}}
-                        disabled={false}
+                        onClick={onCopy}
+                        disabled={isCopied}
                       >
-                        <CopyIcon />
+                        {isCopied ? <CopyCheckIcon /> : <CopyIcon />}
                       </Button>
                     </div>
                   </div>
