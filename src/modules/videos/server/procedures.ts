@@ -10,7 +10,7 @@ import { z } from "zod";
 export const videosRouter = createTRPCRouter({
   remove: protectedProcedure
     .input(z.object({ id: z.string().uuid() }))
-    .query(async ({ ctx, input }) => {
+    .mutation(async ({ ctx, input }) => {
       const { id: userId } = ctx.user;
 
       const [removedVideo] = await db
