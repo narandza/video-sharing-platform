@@ -5,6 +5,7 @@ import Link from "next/link";
 import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { Suspense, useState } from "react";
+import { useRouter } from "next/navigation";
 import { ErrorBoundary } from "react-error-boundary";
 import {
   CopyCheckIcon,
@@ -44,7 +45,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { VideoPlayer } from "@/modules/videos/ui/components/video-player";
-import { useRouter } from "next/navigation";
 
 interface FormSectionProps {
   videoId: string;
