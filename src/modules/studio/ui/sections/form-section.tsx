@@ -45,6 +45,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { VideoPlayer } from "@/modules/videos/ui/components/video-player";
+import Image from "next/image";
 
 interface FormSectionProps {
   videoId: string;
@@ -183,7 +184,27 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
                 </FormItem>
               )}
             />
-            {/* Add thumbnail field here */}
+            <FormField
+              control={form.control}
+              name="thumbnailUrl"
+              render={() => (
+                <FormItem>
+                  <FormLabel>Thumbnail</FormLabel>
+
+                  <FormControl>
+                    <div className="p-0.5 border border-dashed border-neutral-400 relative h-[84px] w-[153px] group">
+                      <Image
+                        src={video.thumbnailUrl ?? "/placeholder.svg"}
+                        className="object-cover"
+                        fill
+                        alt="Thumbnail"
+                      />
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <FormField
               control={form.control}
               name="categoryId"
