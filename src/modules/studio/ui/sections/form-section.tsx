@@ -11,8 +11,11 @@ import {
   CopyCheckIcon,
   CopyIcon,
   Globe2Icon,
+  ImagePlusIcon,
   LockIcon,
   MoreVerticalIcon,
+  RotateCcwIcon,
+  SparklesIcon,
   TrashIcon,
 } from "lucide-react";
 
@@ -210,6 +213,20 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
                             <MoreVerticalIcon className="text-white" />
                           </Button>
                         </DropdownMenuTrigger>
+                        <DropdownMenuContent align="start" side="right">
+                          <DropdownMenuItem>
+                            <ImagePlusIcon className="size-4 mr-1" />
+                            Change
+                          </DropdownMenuItem>
+                          <DropdownMenuItem>
+                            <SparklesIcon className="size-4 mr-1" />
+                            AI-Generated
+                          </DropdownMenuItem>
+                          <DropdownMenuItem>
+                            <RotateCcwIcon className="size-4 mr-1" />
+                            Restore
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
                       </DropdownMenu>
                     </div>
                   </FormControl>
