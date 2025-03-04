@@ -3,8 +3,8 @@ import { and, desc, eq, lt, or } from "drizzle-orm";
 
 import { db } from "@/db";
 import { videos } from "@/db/schema";
-import { createTRPCRouter, protectedProcedure } from "@/trpc/init";
 import { TRPCError } from "@trpc/server";
+import { createTRPCRouter, protectedProcedure } from "@/trpc/init";
 
 export const studioRouter = createTRPCRouter({
   getOne: protectedProcedure

@@ -1,10 +1,11 @@
+import { z } from "zod";
+import { and, eq } from "drizzle-orm";
+import { UploadThingError } from "uploadthing/server";
+import { createUploadthing, type FileRouter } from "uploadthing/next";
+
 import { db } from "@/db";
 import { users, videos } from "@/db/schema";
 import { auth } from "@clerk/nextjs/server";
-import { and, eq } from "drizzle-orm";
-import { createUploadthing, type FileRouter } from "uploadthing/next";
-import { UploadThingError } from "uploadthing/server";
-import { z } from "zod";
 
 const f = createUploadthing();
 
