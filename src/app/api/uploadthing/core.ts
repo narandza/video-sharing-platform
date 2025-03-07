@@ -6,7 +6,6 @@ import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { db } from "@/db";
 import { users, videos } from "@/db/schema";
 import { auth } from "@clerk/nextjs/server";
-import { metadata } from "@/app/layout";
 
 const f = createUploadthing();
 
