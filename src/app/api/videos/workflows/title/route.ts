@@ -1,7 +1,8 @@
+import { eq, and } from "drizzle-orm";
+
 import { db } from "@/db";
 import { videos } from "@/db/schema";
 import { serve } from "@upstash/workflow/nextjs";
-import { eq, and } from "drizzle-orm";
 
 interface InputType {
   userId: string;

@@ -4,10 +4,10 @@ import { and, eq } from "drizzle-orm";
 import { db } from "@/db";
 import { mux } from "@/lib/mux";
 import { TRPCError } from "@trpc/server";
+import { workflow } from "@/lib/workflow";
+import { UTApi } from "uploadthing/server";
 import { videoUpdateSchema, videos } from "@/db/schema";
 import { createTRPCRouter, protectedProcedure } from "@/trpc/init";
-import { UTApi } from "uploadthing/server";
-import { workflow } from "@/lib/workflow";
 
 export const videosRouter = createTRPCRouter({
   generateThumbnail: protectedProcedure

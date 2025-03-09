@@ -1,5 +1,6 @@
 import { eq } from "drizzle-orm";
 import { headers } from "next/headers";
+import { UTApi } from "uploadthing/server";
 
 import { db } from "@/db";
 import { mux } from "@/lib/mux";
@@ -11,7 +12,6 @@ import {
   VideoAssetTrackReadyWebhookEvent,
   VideoAssetDeletedWebhookEvent,
 } from "@mux/mux-node/resources/webhooks";
-import { UTApi } from "uploadthing/server";
 
 const SIGNING_SECRET = process.env.MUX_WEBHOOK_SECRET;
 
