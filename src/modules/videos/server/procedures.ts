@@ -7,8 +7,18 @@ import { TRPCError } from "@trpc/server";
 import { videoUpdateSchema, videos } from "@/db/schema";
 import { createTRPCRouter, protectedProcedure } from "@/trpc/init";
 import { UTApi } from "uploadthing/server";
+import { workflow } from "@/lib/workflow";
 
 export const videosRouter = createTRPCRouter({
+  generateThumbnail: protectedProcedure.mutation(async ({ ctx }) => {
+    const { id: userId } = ctx.user;
+    const { workflowRunId } = await workflow.trigger({
+      url: `${process.env.UPSTASH_WORKFLOW_URL!}/api/videos/workflows/title`,
+      body: { userId },
+    });
+
+    return workflowRunId;
+  }),
   restoreThumbnail: protectedProcedure
     .input(z.object({ id: z.string().uuid() }))
     .mutation(async ({ ctx, input }) => {
