@@ -12,6 +12,7 @@ import {
   CopyIcon,
   Globe2Icon,
   ImagePlusIcon,
+  Loader2Icon,
   LockIcon,
   MoreVerticalIcon,
   RotateCcwIcon,
@@ -112,7 +113,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
     },
   });
 
-  const generateThumbnail = trpc.videos.generateThumbnail.useMutation({
+  const generateTitle = trpc.videos.generateThumbnail.useMutation({
     onSuccess: () => {
       toast.success("Background job started", {
         description: "This may take some time",
@@ -192,7 +193,25 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
                 name="title"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Title</FormLabel>
+                    <FormLabel>
+                      <div className="flex items-center gap-x-2">
+                        Title
+                        <Button
+                          size="icon"
+                          variant="outline"
+                          type="button"
+                          className="rounded-full size-6 [&_svg]:size-3"
+                          onClick={() => generateTitle.mutate({ id: videoId })}
+                          disabled={!generateTitle.isPending}
+                        >
+                          {generateTitle.isPending ? (
+                            <Loader2Icon className="animate-spin" />
+                          ) : (
+                            <SparklesIcon />
+                          )}
+                        </Button>
+                      </div>
+                    </FormLabel>
                     <FormControl>
                       <Input
                         {...field}

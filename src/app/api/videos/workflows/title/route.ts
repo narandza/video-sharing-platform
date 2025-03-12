@@ -65,6 +65,10 @@ export const { POST } = serve(async (context) => {
 
   const title = body.choices[0]?.message.content;
 
+  if (!title) {
+    throw new Error("Bad request");
+  }
+
   await context.run("update-video", async () => {
     await db
       .update(videos)
