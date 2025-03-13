@@ -124,6 +124,17 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
     },
   });
 
+  const generateDescription = trpc.videos.generateDescription.useMutation({
+    onSuccess: () => {
+      toast.success("Background job started", {
+        description: "This may take some time",
+      });
+    },
+    onError: () => {
+      toast.error("Something went wrong");
+    },
+  });
+
   const form = useForm<z.infer<typeof videoUpdateSchema>>({
     resolver: zodResolver(videoUpdateSchema),
     defaultValues: video,
@@ -202,7 +213,9 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
                           type="button"
                           className="rounded-full size-6 [&_svg]:size-3"
                           onClick={() => generateTitle.mutate({ id: videoId })}
-                          disabled={!generateTitle.isPending}
+                          disabled={
+                            !generateTitle.isPending || !video.muxTrackId
+                          }
                         >
                           {generateTitle.isPending ? (
                             <Loader2Icon className="animate-spin" />
@@ -235,10 +248,14 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
                           variant="outline"
                           type="button"
                           className="rounded-full size-6 [&_svg]:size-3"
-                          onClick={() => generateTitle.mutate({ id: videoId })}
-                          disabled={!generateTitle.isPending}
+                          onClick={() =>
+                            generateDescription.mutate({ id: videoId })
+                          }
+                          disabled={
+                            !generateDescription.isPending || !video.muxTrackId
+                          }
                         >
-                          {generateTitle.isPending ? (
+                          {generateDescription.isPending ? (
                             <Loader2Icon className="animate-spin" />
                           ) : (
                             <SparklesIcon />
