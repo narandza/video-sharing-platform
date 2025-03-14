@@ -3,6 +3,7 @@
 import { z } from "zod";
 import Link from "next/link";
 import { toast } from "sonner";
+import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { Suspense, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -25,8 +26,11 @@ import { Input } from "@/components/ui/input";
 import { snakeCaseToTitle } from "@/lib/utils";
 import { videoUpdateSchema } from "@/db/schema";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Textarea } from "@/components/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { THUMBNAIL_FALLBACK } from "@/modules/videos/constants";
+import { VideoPlayer } from "@/modules/videos/ui/components/video-player";
 import {
   Form,
   FormControl,
@@ -48,12 +52,9 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { VideoPlayer } from "@/modules/videos/ui/components/video-player";
-import Image from "next/image";
-import { THUMBNAIL_FALLBACK } from "@/modules/videos/constants";
+
 import { ThumbnailUploadModal } from "../components/thumbnail-upload-modal";
 import { ThumbnailGenerateModal } from "../components/thumbnail-generate-modal";
-import { Skeleton } from "@/components/ui/skeleton";
 
 interface FormSectionProps {
   videoId: string;
@@ -239,7 +240,10 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
               </p>
             </div>
             <div className="flex items-center gap-x-2">
-              <Button type="submit" disabled={update.isPending}>
+              <Button
+                type="submit"
+                disabled={update.isPending || !form.formState.isDirty}
+              >
                 Save
               </Button>
               <DropdownMenu>

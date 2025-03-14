@@ -1,6 +1,12 @@
-import { trpc } from "@/trpc/client";
-import { ResponsiveModal } from "@/components/responsive-modal";
 import { z } from "zod";
+import { toast } from "sonner";
+import { useForm } from "react-hook-form";
+
+import { trpc } from "@/trpc/client";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { ResponsiveModal } from "@/components/responsive-modal";
 import {
   Form,
   FormControl,
@@ -9,11 +15,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
-import { toast } from "sonner";
 
 interface ThumbnailGenerateModalProps {
   videoId: string;

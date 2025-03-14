@@ -1,9 +1,9 @@
 import { eq, and } from "drizzle-orm";
+import { UTApi } from "uploadthing/server";
 
 import { db } from "@/db";
 import { videos } from "@/db/schema";
 import { serve } from "@upstash/workflow/nextjs";
-import { UTApi } from "uploadthing/server";
 
 interface InputType {
   userId: string;
