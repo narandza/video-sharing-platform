@@ -13,6 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 interface ThumbnailGenerateModalProps {
   videoId: string;
@@ -36,12 +37,24 @@ export const ThumbnailGenerateModal = ({
     },
   });
 
-  const utils = trpc.useUtils();
+  // const utils = trpc.useUtils();
 
-  const onSubmit = () => {
-    utils.studio.getMany.invalidate();
-    utils.studio.getOne.invalidate({ id: videoId });
-    onOpenChange(false);
+  const generateThumbnail = trpc.videos.generateThumbnail.useMutation({
+    onSuccess: () => {
+      toast.success("Background job started", {
+        description: "This may take some time",
+      });
+    },
+    onError: () => {
+      toast.error("Something went wrong");
+    },
+  });
+
+  const onSubmit = (values: z.infer<typeof formSchema>) => {
+    generateThumbnail.mutate({
+      prompt: values.prompt,
+      id: videoId,
+    });
   };
 
   return (
