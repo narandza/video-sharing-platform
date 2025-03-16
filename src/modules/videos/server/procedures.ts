@@ -25,6 +25,7 @@ export const videosRouter = createTRPCRouter({
           },
         })
         .from(videos)
+        .innerJoin(users, eq(videos.userId, users.id))
         .where(eq(videos.id, input.id));
 
       if (!existingVideo) {
