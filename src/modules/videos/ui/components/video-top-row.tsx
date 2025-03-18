@@ -1,5 +1,5 @@
-import { VideoGetOneOutput } from "../../types";
 import { VideoOwner } from "./video-owner";
+import { VideoGetOneOutput } from "../../types";
 
 interface VideoTopRowProps {
   video: VideoGetOneOutput;
