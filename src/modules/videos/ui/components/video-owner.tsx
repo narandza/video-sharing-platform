@@ -6,6 +6,7 @@ import { UserAvatar } from "@/components/user-avatar";
 import { SubscriptionButton } from "@/modules/subscriptions/ui/components/subscription-button";
 
 import { VideoGetOneOutput } from "../../types";
+import { UserInfo } from "@/modules/users/ui/components/user-info";
 
 interface VideoOwnerProps {
   user: VideoGetOneOutput["user"];
@@ -20,6 +21,7 @@ export const VideoOwner = ({ user, videoId }: VideoOwnerProps) => {
       <Link href={`users/${user.id}`}>
         <div className="flex items-center gap-3 min-w-0">
           <UserAvatar size="lg" imageUrl={user.imageUrl} name={user.name} />
+          <UserInfo size="lg" name={user.name} />
           <span className="text-sm text-muted-foreground line-clamp-1">
             {/* TODO: properly fill subscriber count */}
             {0} subscriber
