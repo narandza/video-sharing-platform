@@ -2,6 +2,7 @@ import { VideoOwner } from "./video-owner";
 import { VideoGetOneOutput } from "../../types";
 import { VideoReactions } from "./video-reactions";
 import { VideoMenu } from "./video-menu";
+import { VideoDescription } from "./video-description";
 
 interface VideoTopRowProps {
   video: VideoGetOneOutput;
@@ -21,6 +22,13 @@ export const VideoTopRow = ({ video }: VideoTopRowProps) => {
           <VideoMenu videoId={video.id} variant="secondary" />
         </div>
       </div>
+      <VideoDescription
+        compactViews="0"
+        expandedViews="0"
+        compactDate="22/22/22"
+        expandedDate="18th Mar 2025"
+        description={video.description || ""}
+      />
     </div>
   );
 };
