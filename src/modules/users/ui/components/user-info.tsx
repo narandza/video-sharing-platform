@@ -1,7 +1,10 @@
 import { VariantProps, cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
-import { Tooltip } from "@/components/ui/tooltip";
-import { TooltipContent, TooltipTrigger } from "@radix-ui/react-tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const userInfoVariants = cva("flex items-center gap-1", {
   variants: {
@@ -31,7 +34,7 @@ export const UserInfo = ({ name, className, size }: UserInfoProps) => {
           </p>
         </TooltipTrigger>
         <TooltipContent align="center" className="bg-black/70">
-          <p className="">{name}</p>
+          <p>{name}</p>
         </TooltipContent>
       </Tooltip>
     </div>
