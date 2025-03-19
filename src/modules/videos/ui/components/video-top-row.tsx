@@ -1,6 +1,7 @@
 import { VideoOwner } from "./video-owner";
 import { VideoGetOneOutput } from "../../types";
 import { VideoReactions } from "./video-reactions";
+import { VideoMenu } from "./video-menu";
 
 interface VideoTopRowProps {
   video: VideoGetOneOutput;
@@ -17,6 +18,7 @@ export const VideoTopRow = ({ video }: VideoTopRowProps) => {
          -mb-2 sm:pb-0 sm:mb-0 gap-2"
         >
           <VideoReactions />
+          <VideoMenu videoId={video.id} variant="secondary" />
         </div>
       </div>
     </div>
