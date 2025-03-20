@@ -6,7 +6,7 @@ import { mux } from "@/lib/mux";
 import { TRPCError } from "@trpc/server";
 import { workflow } from "@/lib/workflow";
 import { UTApi } from "uploadthing/server";
-import { users, videoUpdateSchema, videos } from "@/db/schema";
+import { users, videoUpdateSchema, videoViews, videos } from "@/db/schema";
 import {
   baseProcedure,
   createTRPCRouter,
@@ -23,6 +23,7 @@ export const videosRouter = createTRPCRouter({
           user: {
             ...getTableColumns(users),
           },
+          viewCount: db.$count(videoViews, eq(videoViews.videoId, videos.id)),
         })
         .from(videos)
         .innerJoin(users, eq(videos.userId, users.id))
