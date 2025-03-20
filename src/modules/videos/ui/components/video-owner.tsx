@@ -3,10 +3,10 @@ import Link from "next/link";
 import { useAuth } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { UserAvatar } from "@/components/user-avatar";
+import { UserInfo } from "@/modules/users/ui/components/user-info";
 import { SubscriptionButton } from "@/modules/subscriptions/ui/components/subscription-button";
 
 import { VideoGetOneOutput } from "../../types";
-import { UserInfo } from "@/modules/users/ui/components/user-info";
 
 interface VideoOwnerProps {
   user: VideoGetOneOutput["user"];

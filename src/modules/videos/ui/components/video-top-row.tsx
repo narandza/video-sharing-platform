@@ -1,10 +1,11 @@
+import { useMemo } from "react";
+import { format, formatDistanceToNow } from "date-fns";
+
+import { VideoMenu } from "./video-menu";
 import { VideoOwner } from "./video-owner";
 import { VideoGetOneOutput } from "../../types";
 import { VideoReactions } from "./video-reactions";
-import { VideoMenu } from "./video-menu";
 import { VideoDescription } from "./video-description";
-import { useMemo } from "react";
-import { format, formatDistanceToNow } from "date-fns";
 
 interface VideoTopRowProps {
   video: VideoGetOneOutput;
