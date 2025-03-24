@@ -37,6 +37,7 @@ export const VideoReactions = ({
       }
     },
   });
+
   const dislike = trpc.videoReactions.dislike.useMutation({
     onSuccess: () => {
       utils.videos.getOne.invalidate({ id: videoId });
@@ -69,6 +70,8 @@ export const VideoReactions = ({
       "
       />
       <Button
+        onClick={() => dislike.mutate({ videoId })}
+        disabled={like.isPending || dislike.isPending}
         variant="secondary"
         className="rounded-r-full rounded-l-none pl-3"
       >
