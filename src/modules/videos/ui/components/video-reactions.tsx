@@ -1,12 +1,13 @@
+import { toast } from "sonner";
 import { ThumbsDownIcon, ThumbsUpIcon } from "lucide-react";
 
+import { VideoGetOneOutput } from "../../types";
+
 import { cn } from "@/lib/utils";
+import { trpc } from "@/trpc/client";
+import { useClerk } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { VideoGetOneOutput } from "../../types";
-import { useClerk } from "@clerk/nextjs";
-import { trpc } from "@/trpc/client";
-import { toast } from "sonner";
 
 interface VideoReactionsProps {
   videoId: string;
