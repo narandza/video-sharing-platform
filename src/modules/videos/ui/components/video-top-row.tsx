@@ -1,12 +1,13 @@
 import { useMemo } from "react";
 import { format, formatDistanceToNow } from "date-fns";
 
+import { Skeleton } from "@/components/ui/skeleton";
+
 import { VideoMenu } from "./video-menu";
 import { VideoOwner } from "./video-owner";
 import { VideoGetOneOutput } from "../../types";
 import { VideoReactions } from "./video-reactions";
 import { VideoDescription } from "./video-description";
-import { Skeleton } from "@/components/ui/skeleton";
 
 interface VideoTopRowProps {
   video: VideoGetOneOutput;

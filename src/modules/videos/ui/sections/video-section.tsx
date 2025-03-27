@@ -5,11 +5,11 @@ import { ErrorBoundary } from "react-error-boundary";
 
 import { cn } from "@/lib/utils";
 import { trpc } from "@/trpc/client";
-
-import { VideoPlayer, VideoPlayerSkeleton } from "../components/video-player";
-import { VideoBanner } from "../components/video-banner";
-import { VideoTopRow, VideoTopRowSkeleton } from "../components/video-top-row";
 import { useAuth } from "@clerk/nextjs";
+
+import { VideoBanner } from "../components/video-banner";
+import { VideoPlayer, VideoPlayerSkeleton } from "../components/video-player";
+import { VideoTopRow, VideoTopRowSkeleton } from "../components/video-top-row";
 
 interface VideoSectionProps {
   videoId: string;
