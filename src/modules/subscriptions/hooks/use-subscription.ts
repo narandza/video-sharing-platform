@@ -1,4 +1,6 @@
 import { trpc } from "@/trpc/client";
+import { useClerk } from "@clerk/nextjs";
+import { toast } from "sonner";
 
 interface UseSubscriptionProps {
   userId: string;
@@ -11,9 +13,43 @@ export const useSubscription = ({
   isSubscribed,
   fromVideoId,
 }: UseSubscriptionProps) => {
-  const subscribe = trpc.subscriptions.create.useMutation();
+  const clerk = useClerk();
 
-  const unsubscribe = trpc.subscriptions.remove.useMutation();
+  const utils = trpc.useUtils();
+
+  const subscribe = trpc.subscriptions.create.useMutation({
+    onSuccess: () => {
+      toast.success("Subscribed");
+
+      if (fromVideoId) {
+        utils.videos.getOne.invalidate({ id: fromVideoId });
+      }
+    },
+    onError: (error) => {
+      toast.error("Something went wrong");
+
+      if (error.data?.code === "UNAUTHORIZED") {
+        clerk.openSignIn();
+      }
+    },
+  });
+
+  const unsubscribe = trpc.subscriptions.remove.useMutation({
+    onSuccess: () => {
+      toast.success("Unsubscribed");
+
+      if (fromVideoId) {
+        utils.videos.getOne.invalidate({ id: fromVideoId });
+      }
+    },
+    onError: (error) => {
+      toast.error("Something went wrong");
+
+      if (error.data?.code === "UNAUTHORIZED") {
+        clerk.openSignIn();
+      }
+    },
+  });
 
   const isPending = subscribe.isPending;
 
