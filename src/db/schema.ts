@@ -155,7 +155,7 @@ export const comments = pgTable("comments", {
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
-export const commentsRelations = relations(comments, ({ one, many }) => ({
+export const commentsRelations = relations(comments, ({ one }) => ({
   user: one(users, {
     fields: [comments.userId],
     references: [users.id],
@@ -165,6 +165,10 @@ export const commentsRelations = relations(comments, ({ one, many }) => ({
     references: [videos.id],
   }),
 }));
+
+export const commentsSelectSchema = createSelectSchema(comments);
+export const commentsInsertSchema = createInsertSchema(comments);
+export const commentsUpdateSchema = createUpdateSchema(comments);
 
 export const videoViews = pgTable(
   "video_views",
