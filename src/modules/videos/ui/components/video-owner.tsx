@@ -4,10 +4,10 @@ import { useAuth } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { UserAvatar } from "@/components/user-avatar";
 import { UserInfo } from "@/modules/users/ui/components/user-info";
+import { useSubscription } from "@/modules/subscriptions/hooks/use-subscription";
 import { SubscriptionButton } from "@/modules/subscriptions/ui/components/subscription-button";
 
 import { VideoGetOneOutput } from "../../types";
-import { useSubscription } from "@/modules/subscriptions/hooks/use-subscription";
 
 interface VideoOwnerProps {
   user: VideoGetOneOutput["user"];
@@ -15,7 +15,7 @@ interface VideoOwnerProps {
 }
 
 export const VideoOwner = ({ user, videoId }: VideoOwnerProps) => {
-  const { userId } = useAuth();
+  const { userId, isLoaded } = useAuth();
 
   const { isPending, onClick } = useSubscription({
     userId: user.id,
@@ -43,7 +43,7 @@ export const VideoOwner = ({ user, videoId }: VideoOwnerProps) => {
       ) : (
         <SubscriptionButton
           onClick={onClick}
-          disabled={isPending}
+          disabled={isPending || !isLoaded}
           isSubscribed={user.viewerSubscribed}
           className="flex-none"
         />

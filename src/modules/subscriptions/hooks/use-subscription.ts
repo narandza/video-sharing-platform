@@ -1,6 +1,7 @@
+import { toast } from "sonner";
+
 import { trpc } from "@/trpc/client";
 import { useClerk } from "@clerk/nextjs";
-import { toast } from "sonner";
 
 interface UseSubscriptionProps {
   userId: string;
