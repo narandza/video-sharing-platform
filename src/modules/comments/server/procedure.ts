@@ -33,7 +33,7 @@ export const commentsRouter = createTRPCRouter({
         videoId: z.string().uuid(),
       })
     )
-    .mutation(async ({ input }) => {
+    .query(async ({ input }) => {
       const { videoId } = input;
 
       const data = await db
