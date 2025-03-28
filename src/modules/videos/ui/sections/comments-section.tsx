@@ -9,7 +9,7 @@ interface CommentSectionProps {
   videoId: string;
 }
 
-export const CommentSection = ({ videoId }: CommentSectionProps) => {
+export const CommentsSection = ({ videoId }: CommentSectionProps) => {
   return (
     <Suspense fallback={<p>loading</p>}>
       <ErrorBoundary fallback={<p>error</p>}>
