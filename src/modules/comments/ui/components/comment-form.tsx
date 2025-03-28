@@ -1,11 +1,12 @@
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+
+import { useUser } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
+import { commentInsertSchema } from "@/db/schema";
 import { Textarea } from "@/components/ui/textarea";
 import { UserAvatar } from "@/components/user-avatar";
-import { commentInsertSchema } from "@/db/schema";
-import { useUser } from "@clerk/nextjs";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 
 interface CommentFormProps {
   videoId: string;

@@ -1,9 +1,10 @@
 "use client";
 
-import { CommentForm } from "@/modules/comments/ui/components/comment-form";
-import { trpc } from "@/trpc/client";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
+
+import { trpc } from "@/trpc/client";
+import { CommentForm } from "@/modules/comments/ui/components/comment-form";
 
 interface CommentSectionProps {
   videoId: string;

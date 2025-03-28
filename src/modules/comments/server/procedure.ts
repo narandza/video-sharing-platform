@@ -1,12 +1,13 @@
-import { db } from "@/db";
-import { comments } from "@/db/schema";
+import { z } from "zod";
+import { eq } from "drizzle-orm";
+
 import {
   baseProcedure,
   createTRPCRouter,
   protectedProcedure,
 } from "@/trpc/init";
-import { eq } from "drizzle-orm";
-import { z } from "zod";
+import { db } from "@/db";
+import { comments } from "@/db/schema";
 
 export const commentsRouter = createTRPCRouter({
   create: protectedProcedure
