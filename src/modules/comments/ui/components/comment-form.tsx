@@ -15,7 +15,7 @@ export const CommentForm = ({ videoId, onSuccess }: CommentFormProps) => {
     <form className="flex gap-4 group">
       <UserAvatar
         size="lg"
-        imageUrl={user?.imageUrl || "/placeholder.svg"}
+        imageUrl={user?.imageUrl || "/user-placeholder.svg"}
         name={user?.username || "User"}
       />
       <div className="flex-1">
