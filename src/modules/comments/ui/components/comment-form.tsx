@@ -46,21 +46,26 @@ export const CommentForm = ({ videoId, onSuccess }: CommentFormProps) => {
     },
   });
 
-  const form = useForm<z.infer<typeof commentInsertSchema>>({
-    resolver: zodResolver(commentInsertSchema.omit({ userId: true })),
+  const omittedCommentInsertSchema = commentInsertSchema.omit({ userId: true });
+
+  const form = useForm<z.infer<typeof omittedCommentInsertSchema>>({
+    resolver: zodResolver(omittedCommentInsertSchema),
     defaultValues: {
       videoId,
       value: "",
     },
   });
 
-  const handleSubmit = (values: z.infer<typeof commentInsertSchema>) => {
+  const handleSubmit = (values: z.infer<typeof omittedCommentInsertSchema>) => {
     create.mutate(values);
   };
 
   return (
-    <Form onSubmit={form.handleSubmit(handleSubmit)} {...form}>
-      <form className="flex gap-4 group">
+    <Form {...form}>
+      <form
+        className="flex gap-4 group"
+        onSubmit={form.handleSubmit(handleSubmit)}
+      >
         <UserAvatar
           size="lg"
           imageUrl={user?.imageUrl || "/user- placeholder.svg"}
