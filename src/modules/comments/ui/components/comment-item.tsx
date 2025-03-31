@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { CommentsGetManyOutput } from "../../types";
-import { UserAvatar } from "@/components/user-avatar";
 import { formatDistanceToNow } from "date-fns";
 
+import { UserAvatar } from "@/components/user-avatar";
+
+import { CommentsGetManyOutput } from "../../types";
 interface CommentItemProps {
   comment: CommentsGetManyOutput[number];
 }
