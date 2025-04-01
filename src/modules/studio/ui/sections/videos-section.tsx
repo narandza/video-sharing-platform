@@ -3,11 +3,9 @@
 import Link from "next/link";
 import { Suspense } from "react";
 import { format } from "date-fns";
-
-import { trpc } from "@/trpc/client";
-import { DEFAULT_LIMIT } from "@/constants";
+import { Globe2Icon, LockIcon } from "lucide-react";
 import { ErrorBoundary } from "react-error-boundary";
-import { InfiniteScroll } from "@/components/infinite-scroll";
+
 import {
   Table,
   TableBody,
@@ -16,10 +14,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { VideoThumbnail } from "@/modules/videos/ui/components/video-thumnail";
+import { trpc } from "@/trpc/client";
+import { DEFAULT_LIMIT } from "@/constants";
 import { snakeCaseToTitle } from "@/lib/utils";
-import { Globe2Icon, LockIcon } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { InfiniteScroll } from "@/components/infinite-scroll";
+import { VideoThumbnail } from "@/modules/videos/ui/components/video-thumnail";
 
 export const VideosSection = () => {
   return (

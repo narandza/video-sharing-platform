@@ -1,14 +1,14 @@
 "use client";
 
 import { Suspense } from "react";
+import { Loader2Icon } from "lucide-react";
 import { ErrorBoundary } from "react-error-boundary";
 
 import { trpc } from "@/trpc/client";
-import { CommentForm } from "@/modules/comments/ui/components/comment-form";
-import { CommentItem } from "@/modules/comments/ui/components/comment-item";
 import { DEFAULT_LIMIT } from "@/constants";
 import { InfiniteScroll } from "@/components/infinite-scroll";
-import { Loader2Icon } from "lucide-react";
+import { CommentForm } from "@/modules/comments/ui/components/comment-form";
+import { CommentItem } from "@/modules/comments/ui/components/comment-item";
 
 interface CommentSectionProps {
   videoId: string;

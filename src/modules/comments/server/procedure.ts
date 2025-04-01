@@ -7,8 +7,8 @@ import {
   protectedProcedure,
 } from "@/trpc/init";
 import { db } from "@/db";
-import { comments, users } from "@/db/schema";
 import { TRPCError } from "@trpc/server";
+import { comments, users } from "@/db/schema";
 
 export const commentsRouter = createTRPCRouter({
   remove: protectedProcedure

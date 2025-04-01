@@ -1,9 +1,8 @@
 import Link from "next/link";
+import { toast } from "sonner";
 import { formatDistanceToNow } from "date-fns";
+import { MessageSquareIcon, MoreVerticalIcon, Trash2Icon } from "lucide-react";
 
-import { UserAvatar } from "@/components/user-avatar";
-
-import { CommentsGetManyOutput } from "../../types";
 import { trpc } from "@/trpc/client";
 import {
   DropdownMenu,
@@ -12,9 +11,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { MessageSquareIcon, MoreVerticalIcon, Trash2Icon } from "lucide-react";
 import { useAuth, useClerk } from "@clerk/nextjs";
-import { toast } from "sonner";
+import { UserAvatar } from "@/components/user-avatar";
+
+import { CommentsGetManyOutput } from "../../types";
+
 interface CommentItemProps {
   comment: CommentsGetManyOutput["items"][number];
 }
