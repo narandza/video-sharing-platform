@@ -4,11 +4,22 @@ import { formatDistanceToNow } from "date-fns";
 import { UserAvatar } from "@/components/user-avatar";
 
 import { CommentsGetManyOutput } from "../../types";
+import { trpc } from "@/trpc/client";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
+import { MessageSquareIcon, MoreVerticalIcon, Trash2Icon } from "lucide-react";
 interface CommentItemProps {
-  comment: CommentsGetManyOutput[number];
+  comment: CommentsGetManyOutput["items"][number];
 }
 
 export const CommentItem = ({ comment }: CommentItemProps) => {
+  const remove = trpc.comments.remove.useMutation();
+
   return (
     <div className="">
       <div className="flex gap-4">
@@ -33,7 +44,25 @@ export const CommentItem = ({ comment }: CommentItemProps) => {
             </div>
           </Link>
           <p className="text-sm">{comment.value}</p>
+          {/* TODO: Reactions */}
         </div>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" size="icon" className="size-8">
+              <MoreVerticalIcon />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuItem onClick={() => {}}>
+              <MessageSquareIcon className="size-4" />
+              Reply
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={remove}>
+              <Trash2Icon className="size-4" />
+              Delete
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </div>
   );
