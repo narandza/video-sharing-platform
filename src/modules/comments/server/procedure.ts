@@ -8,8 +8,30 @@ import {
 } from "@/trpc/init";
 import { db } from "@/db";
 import { comments, users } from "@/db/schema";
+import { TRPCError } from "@trpc/server";
 
 export const commentsRouter = createTRPCRouter({
+  remove: protectedProcedure
+    .input(
+      z.object({
+        id: z.string().uuid(),
+      })
+    )
+    .mutation(async ({ input, ctx }) => {
+      const { id } = input;
+      const { id: userId } = ctx.user;
+
+      const [deletedComment] = await db
+        .delete(comments)
+        .where(and(eq(comments.id, id), eq(comments.userId, userId)))
+        .returning();
+
+      if (!deletedComment) {
+        throw new TRPCError({ code: "NOT_FOUND" });
+      }
+
+      return deletedComment;
+    }),
   create: protectedProcedure
     .input(
       z.object({
