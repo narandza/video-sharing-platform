@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { or, lt, and, eq, getTableColumns, desc } from "drizzle-orm";
+import { or, lt, and, eq, getTableColumns, desc, count } from "drizzle-orm";
 
 import {
   baseProcedure,
@@ -44,6 +44,13 @@ export const commentsRouter = createTRPCRouter({
     .query(async ({ input }) => {
       const { videoId, cursor, limit } = input;
 
+      const [totalData] = await db
+        .select({
+          count: count(),
+        })
+        .from(comments)
+        .where(eq(comments.videoId, videoId));
+
       const data = await db
         .select({
           ...getTableColumns(comments),
@@ -86,6 +93,7 @@ export const commentsRouter = createTRPCRouter({
         : null;
 
       return {
+        totalCount: totalData.count,
         items,
         nextCursor,
       };
