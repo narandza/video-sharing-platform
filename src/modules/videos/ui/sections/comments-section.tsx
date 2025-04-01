@@ -8,6 +8,7 @@ import { CommentForm } from "@/modules/comments/ui/components/comment-form";
 import { CommentItem } from "@/modules/comments/ui/components/comment-item";
 import { DEFAULT_LIMIT } from "@/constants";
 import { InfiniteScroll } from "@/components/infinite-scroll";
+import { Loader2Icon } from "lucide-react";
 
 interface CommentSectionProps {
   videoId: string;
@@ -15,11 +16,19 @@ interface CommentSectionProps {
 
 export const CommentsSection = ({ videoId }: CommentSectionProps) => {
   return (
-    <Suspense fallback={<p>loading</p>}>
+    <Suspense fallback={<CommentSectionSkeleton />}>
       <ErrorBoundary fallback={<p>error</p>}>
         <CommentsSectionSuspense videoId={videoId} />
       </ErrorBoundary>
     </Suspense>
+  );
+};
+
+const CommentSectionSkeleton = () => {
+  return (
+    <div className="mt-6 flex justify-center items-center ">
+      <Loader2Icon className="size-7 text-muted-foreground animate-spin" />
+    </div>
   );
 };
 
