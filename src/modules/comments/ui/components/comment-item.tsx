@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { MessageSquareIcon, MoreVerticalIcon, Trash2Icon } from "lucide-react";
-import { useAuth } from "@clerk/nextjs";
+import { useAuth, useClerk } from "@clerk/nextjs";
 import { toast } from "sonner";
 interface CommentItemProps {
   comment: CommentsGetManyOutput["items"][number];
@@ -64,7 +64,7 @@ export const CommentItem = ({ comment }: CommentItemProps) => {
           <p className="text-sm">{comment.value}</p>
           {/* TODO: Reactions */}
         </div>
-        <DropdownMenu>
+        <DropdownMenu modal={false}>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" size="icon" className="size-8">
               <MoreVerticalIcon />
