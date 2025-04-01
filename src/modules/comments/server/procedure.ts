@@ -44,36 +44,37 @@ export const commentsRouter = createTRPCRouter({
     .query(async ({ input }) => {
       const { videoId, cursor, limit } = input;
 
-      const [totalData] = await db
-        .select({
-          count: count(),
-        })
-        .from(comments)
-        .where(eq(comments.videoId, videoId));
-
-      const data = await db
-        .select({
-          ...getTableColumns(comments),
-          user: users,
-        })
-        .from(comments)
-        .where(
-          and(
-            eq(comments.videoId, videoId),
-            cursor
-              ? or(
-                  lt(comments.updatedAt, cursor.updatedAt),
-                  and(
-                    eq(comments.updatedAt, cursor.updatedAt),
-                    lt(comments.id, cursor.id)
+      const [totalData, data] = await Promise.all([
+        db
+          .select({
+            count: count(),
+          })
+          .from(comments)
+          .where(eq(comments.videoId, videoId)),
+        db
+          .select({
+            ...getTableColumns(comments),
+            user: users,
+          })
+          .from(comments)
+          .where(
+            and(
+              eq(comments.videoId, videoId),
+              cursor
+                ? or(
+                    lt(comments.updatedAt, cursor.updatedAt),
+                    and(
+                      eq(comments.updatedAt, cursor.updatedAt),
+                      lt(comments.id, cursor.id)
+                    )
                   )
-                )
-              : undefined
+                : undefined
+            )
           )
-        )
-        .innerJoin(users, eq(comments.userId, users.id))
-        .orderBy(desc(comments.updatedAt), desc(comments.id))
-        .limit(limit + 1);
+          .innerJoin(users, eq(comments.userId, users.id))
+          .orderBy(desc(comments.updatedAt), desc(comments.id))
+          .limit(limit + 1),
+      ]);
 
       const hasMore = data.length > limit;
 
@@ -93,7 +94,7 @@ export const commentsRouter = createTRPCRouter({
         : null;
 
       return {
-        totalCount: totalData.count,
+        totalCount: totalData[0].count,
         items,
         nextCursor,
       };
