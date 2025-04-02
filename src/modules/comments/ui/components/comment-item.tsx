@@ -95,7 +95,11 @@ export const CommentItem = ({ comment }: CommentItemProps) => {
                 disabled={false}
                 onClick={() => {}}
               >
-                <ThumbsDownIcon className={cn()} />
+                <ThumbsDownIcon
+                  className={cn(
+                    comment.viewerReaction === "dislike" && "fill-black"
+                  )}
+                />
               </Button>
               <span className="text-xs text-muted-foreground">
                 {comment.dislikeCount}
