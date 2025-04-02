@@ -51,4 +51,49 @@ export const commentReactionsRouter = createTRPCRouter({
 
       return createdCommentReaction;
     }),
+  dislike: protectedProcedure
+    .input(z.object({ commentId: z.string().uuid() }))
+    .mutation(async ({ input, ctx }) => {
+      const { id: userId } = ctx.user;
+
+      const { commentId } = input;
+
+      const [existingCommentReactionDislike] = await db
+        .select()
+        .from(commentReactions)
+        .where(
+          and(
+            eq(commentReactions.commentId, commentId),
+            eq(commentReactions.userId, userId),
+            eq(commentReactions.type, "dislike")
+          )
+        );
+
+      if (existingCommentReactionDislike) {
+        const [deletedCommentReaction] = await db
+          .delete(commentReactions)
+          .where(
+            and(
+              eq(commentReactions.userId, userId),
+              eq(commentReactions.commentId, commentId)
+            )
+          )
+          .returning();
+
+        return deletedCommentReaction;
+      }
+
+      const [createdCommentReaction] = await db
+        .insert(commentReactions)
+        .values({ userId, commentId, type: "like" })
+        .onConflictDoUpdate({
+          target: [commentReactions.userId, commentReactions.commentId],
+          set: {
+            type: "like",
+          },
+        })
+        .returning();
+
+      return createdCommentReaction;
+    }),
 });
