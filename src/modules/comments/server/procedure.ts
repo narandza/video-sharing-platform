@@ -8,7 +8,7 @@ import {
 } from "@/trpc/init";
 import { db } from "@/db";
 import { TRPCError } from "@trpc/server";
-import { comments, users } from "@/db/schema";
+import { commentReactions, comments, users } from "@/db/schema";
 
 export const commentsRouter = createTRPCRouter({
   remove: protectedProcedure
@@ -50,6 +50,7 @@ export const commentsRouter = createTRPCRouter({
 
       return createdComment;
     }),
+
   getMany: baseProcedure
     .input(
       z.object({
@@ -77,6 +78,20 @@ export const commentsRouter = createTRPCRouter({
           .select({
             ...getTableColumns(comments),
             user: users,
+            likeCount: db.$count(
+              commentReactions,
+              and(
+                eq(commentReactions.type, "like"),
+                eq(commentReactions.commentId, comments.id)
+              )
+            ),
+            dislikeCount: db.$count(
+              commentReactions,
+              and(
+                eq(commentReactions.type, "dislike"),
+                eq(commentReactions.commentId, comments.id)
+              )
+            ),
           })
           .from(comments)
           .where(
