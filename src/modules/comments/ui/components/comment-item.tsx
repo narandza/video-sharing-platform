@@ -46,6 +46,19 @@ export const CommentItem = ({ comment }: CommentItemProps) => {
     },
   });
 
+  const like = trpc.commentReactions.like.useMutation({
+    onSuccess: () => {
+      utils.comments.getMany.invalidate({ videoId: comment.videoId });
+    },
+    onError: (error) => {
+      toast.error("Something went wrong");
+
+      if (error.data?.code === "UNAUTHORIZED") {
+        clerk.openSignIn();
+      }
+    },
+  });
+
   return (
     <div className="">
       <div className="flex gap-4">
@@ -76,8 +89,8 @@ export const CommentItem = ({ comment }: CommentItemProps) => {
                 className="size-8"
                 size="icon"
                 variant="ghost"
-                disabled={false}
-                onClick={() => {}}
+                disabled={like.isPending}
+                onClick={() => like.mutate({ commentId: comment.id })}
               >
                 <ThumbsUpIcon
                   className={cn(
