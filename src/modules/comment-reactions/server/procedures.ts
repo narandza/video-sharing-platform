@@ -85,11 +85,11 @@ export const commentReactionsRouter = createTRPCRouter({
 
       const [createdCommentReaction] = await db
         .insert(commentReactions)
-        .values({ userId, commentId, type: "like" })
+        .values({ userId, commentId, type: "dislike" })
         .onConflictDoUpdate({
           target: [commentReactions.userId, commentReactions.commentId],
           set: {
-            type: "like",
+            type: "dislike",
           },
         })
         .returning();
