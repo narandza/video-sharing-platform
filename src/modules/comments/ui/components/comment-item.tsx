@@ -9,6 +9,7 @@ import {
   Trash2Icon,
 } from "lucide-react";
 
+import { cn } from "@/lib/utils";
 import { trpc } from "@/trpc/client";
 import {
   DropdownMenu,
@@ -21,7 +22,6 @@ import { useAuth, useClerk } from "@clerk/nextjs";
 import { UserAvatar } from "@/components/user-avatar";
 
 import { CommentsGetManyOutput } from "../../types";
-import { cn } from "@/lib/utils";
 
 interface CommentItemProps {
   comment: CommentsGetManyOutput["items"][number];

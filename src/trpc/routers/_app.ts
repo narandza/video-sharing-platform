@@ -11,13 +11,13 @@ import { commentReactionsRouter } from "@/modules/comment-reactions/server/proce
 
 export const appRouter = createTRPCRouter({
   studio: studioRouter,
-  categories: categoriesRouter,
   videos: videosRouter,
   comments: commentsRouter,
-  commentReactions: commentReactionsRouter,
+  categories: categoriesRouter,
   videoViews: videoViewsRouter,
-  videoReactions: videoReactionsRouter,
   subscriptions: subscriptionsRouter,
+  videoReactions: videoReactionsRouter,
+  commentReactions: commentReactionsRouter,
 });
 // export type definition of API
 export type AppRouter = typeof appRouter;
