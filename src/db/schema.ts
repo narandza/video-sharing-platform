@@ -181,7 +181,15 @@ export const commentsRelations = relations(comments, ({ one, many }) => ({
     fields: [comments.videoId],
     references: [videos.id],
   }),
+  parent: one(comments, {
+    fields: [comments.parentId],
+    references: [comments.id],
+    relationName: "comments_parent_id_foreign_key",
+  }),
   reactions: many(commentReactions),
+  replies: many(comments, {
+    relationName: "comments_parent_id_foreign_key",
+  }),
 }));
 
 export const commentSelectSchema = createSelectSchema(comments);
