@@ -2,6 +2,8 @@ import Link from "next/link";
 import { toast } from "sonner";
 import { formatDistanceToNow } from "date-fns";
 import {
+  ChevronDownIcon,
+  ChevronUpIcon,
   MessageSquareIcon,
   MoreVerticalIcon,
   ThumbsDownIcon,
@@ -194,7 +196,13 @@ export const CommentItem = ({
       )}
       {comment.replyCount > 0 && variant === "comment" && (
         <div className="pl-14">
-          <Button>{comment.replyCount} replies</Button>
+          <Button
+            size="sm"
+            onClick={() => setIsRepliesOpen((current) => !current)}
+          >
+            {isRepliesOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
+            {comment.replyCount} replies
+          </Button>
         </div>
       )}
     </div>
