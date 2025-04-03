@@ -192,6 +192,11 @@ export const CommentItem = ({
           />
         </div>
       )}
+      {comment.replyCount > 0 && variant === "comment" && (
+        <div className="pl-14">
+          <Button>{comment.replyCount} replies</Button>
+        </div>
+      )}
     </div>
   );
 };
