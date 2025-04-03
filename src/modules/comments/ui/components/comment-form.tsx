@@ -69,6 +69,11 @@ export const CommentForm = ({
     create.mutate(values);
   };
 
+  const handleCancel = () => {
+    form.reset();
+    onCancel?.();
+  };
+
   return (
     <Form {...form}>
       <form
@@ -103,6 +108,11 @@ export const CommentForm = ({
           />
 
           <div className="justify-end gap-2 mt-2 flex">
+            {onCancel && (
+              <Button variant="ghost" type="button" onClick={handleCancel}>
+                Cancel
+              </Button>
+            )}
             <Button type="submit" size="sm">
               {variant === "comment" ? "Comment" : "Reply"}
             </Button>
