@@ -44,6 +44,7 @@ export const commentsRouter = createTRPCRouter({
   create: protectedProcedure
     .input(
       z.object({
+        parentId: z.string().uuid().nullish(),
         videoId: z.string().uuid(),
         value: z.string(),
       })

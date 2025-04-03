@@ -60,6 +60,7 @@ export const CommentForm = ({
   const form = useForm<z.infer<typeof omittedCommentInsertSchema>>({
     resolver: zodResolver(omittedCommentInsertSchema),
     defaultValues: {
+      parentId,
       videoId,
       value: "",
     },
