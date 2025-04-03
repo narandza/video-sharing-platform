@@ -181,7 +181,10 @@ export const CommentItem = ({
       {isReplyOpen && variant === "comment" && (
         <div className="mt-4 pl-14">
           <CommentForm
+            variant="reply"
+            onCancel={() => setIsReplyOpen(false)}
             videoId={comment.videoId}
+            parentId={comment.id}
             onSuccess={() => {
               setIsReplyOpen(false);
               setIsRepliesOpen(true);
