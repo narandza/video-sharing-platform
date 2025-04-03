@@ -8,6 +8,7 @@ import {
   desc,
   count,
   inArray,
+  isNull,
 } from "drizzle-orm";
 
 import {
@@ -125,6 +126,7 @@ export const commentsRouter = createTRPCRouter({
             ...getTableColumns(comments),
             user: users,
             viewerReaction: viewerReactions.type,
+            replyCount: db.$count(comments, eq(comments.id, comments.parentId)),
             likeCount: db.$count(
               commentReactions,
               and(
@@ -144,6 +146,7 @@ export const commentsRouter = createTRPCRouter({
           .where(
             and(
               eq(comments.videoId, videoId),
+              isNull(comments.parentId),
               cursor
                 ? or(
                     lt(comments.updatedAt, cursor.updatedAt),
