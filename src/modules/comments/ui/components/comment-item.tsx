@@ -22,6 +22,8 @@ import { useAuth, useClerk } from "@clerk/nextjs";
 import { UserAvatar } from "@/components/user-avatar";
 
 import { CommentsGetManyOutput } from "../../types";
+import { useState } from "react";
+import { CommentForm } from "./comment-form";
 
 interface CommentItemProps {
   comment: CommentsGetManyOutput["items"][number];
@@ -32,10 +34,14 @@ export const CommentItem = ({
   comment,
   variant = "comment",
 }: CommentItemProps) => {
-  const { clerk } = useClerk();
+  const clerk = useClerk();
   const { userId } = useAuth();
 
+  const [isReplyOpen, setIsReplyOpen] = useState(false);
+  const [isRepliesOpen, setIsRepliesOpen] = useState(false);
+
   const utils = trpc.useUtils();
+
   const remove = trpc.comments.remove.useMutation({
     onSuccess: () => {
       toast.success("Comment deleted");
@@ -140,7 +146,7 @@ export const CommentItem = ({
                 variant="ghost"
                 size="sm"
                 className="h-8"
-                onClick={() => {}}
+                onClick={() => setIsReplyOpen(true)}
               >
                 Reply
               </Button>
@@ -154,10 +160,13 @@ export const CommentItem = ({
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuItem onClick={() => {}}>
-              <MessageSquareIcon className="size-4" />
-              Reply
-            </DropdownMenuItem>
+            {variant === "comment" && (
+              <DropdownMenuItem onClick={() => setIsReplyOpen(true)}>
+                <MessageSquareIcon className="size-4" />
+                Reply
+              </DropdownMenuItem>
+            )}
+
             {comment.user.clerkId === userId && (
               <DropdownMenuItem
                 onClick={() => remove.mutate({ id: comment.id })}
@@ -169,6 +178,17 @@ export const CommentItem = ({
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
+      {isReplyOpen && variant === "comment" && (
+        <div className="mt-4 pl-14">
+          <CommentForm
+            videoId={comment.videoId}
+            onSuccess={() => {
+              setIsReplyOpen(false);
+              setIsRepliesOpen(true);
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 };
