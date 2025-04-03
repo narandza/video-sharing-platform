@@ -68,7 +68,7 @@ export const commentsRouter = createTRPCRouter({
 
       const [createdComment] = await db
         .insert(comments)
-        .values({ userId, videoId, value })
+        .values({ userId, videoId, value, parentId })
         .returning();
 
       return createdComment;
