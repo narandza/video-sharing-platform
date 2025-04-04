@@ -26,6 +26,7 @@ import { UserAvatar } from "@/components/user-avatar";
 import { CommentsGetManyOutput } from "../../types";
 import { useState } from "react";
 import { CommentForm } from "./comment-form";
+import { CommentReplies } from "./comment-replies";
 
 interface CommentItemProps {
   comment: CommentsGetManyOutput["items"][number];
