@@ -198,6 +198,7 @@ export const CommentItem = ({
         <div className="pl-14">
           <Button
             size="sm"
+            variant="tertiary"
             onClick={() => setIsRepliesOpen((current) => !current)}
           >
             {isRepliesOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
