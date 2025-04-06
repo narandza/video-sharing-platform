@@ -11,11 +11,16 @@ interface CommentRepliesProps {
 
 export const CommentReplies = ({ parentId, videoId }: CommentRepliesProps) => {
   const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    trpc.comments.getMany.useInfiniteQuery({
-      limit: DEFAULT_LIMIT,
-      videoId,
-      parentId,
-    });
+    trpc.comments.getMany.useInfiniteQuery(
+      {
+        limit: DEFAULT_LIMIT,
+        videoId,
+        parentId,
+      },
+      {
+        getNextPageParam: (lastPage) => lastPage.nextCursor,
+      }
+    );
 
   return (
     <div className="pl-14">
