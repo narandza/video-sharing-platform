@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { toast } from "sonner";
+import { useState } from "react";
 import { formatDistanceToNow } from "date-fns";
 import {
   ChevronDownIcon,
@@ -23,10 +24,9 @@ import { Button } from "@/components/ui/button";
 import { useAuth, useClerk } from "@clerk/nextjs";
 import { UserAvatar } from "@/components/user-avatar";
 
-import { CommentsGetManyOutput } from "../../types";
-import { useState } from "react";
 import { CommentForm } from "./comment-form";
 import { CommentReplies } from "./comment-replies";
+import { CommentsGetManyOutput } from "../../types";
 
 interface CommentItemProps {
   comment: CommentsGetManyOutput["items"][number];
