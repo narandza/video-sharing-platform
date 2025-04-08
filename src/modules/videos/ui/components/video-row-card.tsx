@@ -2,6 +2,9 @@ import { VariantProps, cva } from "class-variance-authority";
 import { VideoGetManyOutput } from "../../types";
 import Link from "next/link";
 import { VideoThumbnail } from "./video-thumnail";
+import { cn } from "@/lib/utils";
+import { UserAvatar } from "@/components/user-avatar";
+import { UserInfo } from "@/modules/users/ui/components/user-info";
 
 const videoRowCardVariants = cva("group flex min-w-0", {
   variants: {
@@ -47,6 +50,39 @@ export const VideoRowCard = ({ data, size, onRemove }: VideoRowCardProps) => {
           duration={data.duration}
         />
       </Link>
+
+      {/* Info */}
+      <div className="flex-1 min-w-0">
+        <div className="flex justify-between gap-x-2">
+          <Link href={`/videos/${data.id}`} className="flex-1 min-w-0">
+            <h3
+              className={cn(
+                "font-medium line-clamp-2",
+                size === "compact" ? "text-sm" : "text-base"
+              )}
+            >
+              {data.title}
+            </h3>
+            {size === "default" && (
+              <p className="text-xs text-muted-foreground mt-1">
+                {data.viewCount} views • {data.likeCount} likes
+              </p>
+            )}
+            {size === "default" && (
+              <>
+                <div className="flex items-center gap-2 my-3">
+                  <UserAvatar
+                    size="sm"
+                    imageUrl={data.user.imageUrl}
+                    name={data.user.name}
+                  />
+                  <UserInfo size="sm" name={data.user.name} />
+                </div>
+              </>
+            )}
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };
