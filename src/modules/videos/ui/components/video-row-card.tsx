@@ -99,6 +99,12 @@ export const VideoRowCard = ({ data, size, onRemove }: VideoRowCardProps) => {
                 </Tooltip>
               </>
             )}
+            {size === "compact" && <UserInfo size="sm" name={data.user.name} />}
+            {size === "compact" && (
+              <p className="">
+                {data.viewCount} views • {data.likeCount} likes
+              </p>
+            )}
           </Link>
         </div>
       </div>
