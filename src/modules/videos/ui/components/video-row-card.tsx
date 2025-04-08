@@ -84,7 +84,7 @@ export const VideoRowCard = ({ data, size, onRemove }: VideoRowCardProps) => {
             </h3>
             {size === "default" && (
               <p className="text-xs text-muted-foreground mt-1">
-                {compactViews} views • {compactViews} likes
+                {compactViews} views • {compactLikes} likes
               </p>
             )}
             {size === "default" && (
@@ -116,7 +116,7 @@ export const VideoRowCard = ({ data, size, onRemove }: VideoRowCardProps) => {
             {size === "compact" && <UserInfo size="sm" name={data.user.name} />}
             {size === "compact" && (
               <p className="text-xs text-muted-foreground mt-1">
-                {compactViews} views • {compactViews} likes
+                {compactViews} views • {compactLikes} likes
               </p>
             )}
           </Link>

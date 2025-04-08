@@ -1,5 +1,6 @@
 import { formatDistanceToNow } from "date-fns";
 import { VideoGetManyOutput } from "../../types";
+import { useMemo } from "react";
 
 interface VideoInfoProps {
   data: VideoGetManyOutput["items"][number];
@@ -16,5 +17,5 @@ export const VideoInfo = ({ data, onRemove }: VideoInfoProps) => {
     return formatDistanceToNow(data.createdAt, { addSuffix: true });
   }, [data.createdAt]);
 
-  return;
+  return <div className=""></div>;
 };
