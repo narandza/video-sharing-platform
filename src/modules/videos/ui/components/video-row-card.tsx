@@ -5,6 +5,11 @@ import { VideoThumbnail } from "./video-thumnail";
 import { cn } from "@/lib/utils";
 import { UserAvatar } from "@/components/user-avatar";
 import { UserInfo } from "@/modules/users/ui/components/user-info";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const videoRowCardVariants = cva("group flex min-w-0", {
   variants: {
@@ -78,6 +83,20 @@ export const VideoRowCard = ({ data, size, onRemove }: VideoRowCardProps) => {
                   />
                   <UserInfo size="sm" name={data.user.name} />
                 </div>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <p className="text-xs text-muted-foreground w-fit line-clamp-2">
+                      {data.description ? data.description : "No description"}
+                    </p>
+                  </TooltipTrigger>
+                  <TooltipContent
+                    align="center"
+                    side="bottom"
+                    className="bg-black/70"
+                  >
+                    <p className="">From the video description</p>
+                  </TooltipContent>
+                </Tooltip>
               </>
             )}
           </Link>
