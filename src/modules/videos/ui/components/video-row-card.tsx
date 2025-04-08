@@ -10,6 +10,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { VideoMenu } from "./video-menu";
 
 const videoRowCardVariants = cva("group flex min-w-0", {
   variants: {
@@ -101,11 +102,14 @@ export const VideoRowCard = ({ data, size, onRemove }: VideoRowCardProps) => {
             )}
             {size === "compact" && <UserInfo size="sm" name={data.user.name} />}
             {size === "compact" && (
-              <p className="">
+              <p className="text-xs text-muted-foreground mt-1">
                 {data.viewCount} views • {data.likeCount} likes
               </p>
             )}
           </Link>
+          <div className="flex-none">
+            <VideoMenu videoId={data.id} onRemove={onRemove} />
+          </div>
         </div>
       </div>
     </div>
