@@ -20,12 +20,21 @@ export const SuggestionsSection = ({ videoId }: SuggestionsSectionProps) => {
   );
 
   return (
-    <div className="">
-      {suggestions.pages.flatMap((page) =>
-        page.items.map((video) => (
-          <VideoRowCard key={video.id} data={video} size="compact" />
-        ))
-      )}
-    </div>
+    <>
+      <div className="hidden md:block space-y-3">
+        {suggestions.pages.flatMap((page) =>
+          page.items.map((video) => (
+            <VideoRowCard key={video.id} data={video} size="compact" />
+          ))
+        )}
+      </div>
+      <div className="block md:hidden space-y-10">
+        {suggestions.pages.flatMap((page) =>
+          page.items.map((video) => (
+            <VideoRowCard key={video.id} data={video} size="compact" />
+          ))
+        )}
+      </div>
+    </>
   );
 };
