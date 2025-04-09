@@ -6,6 +6,8 @@ import { InfiniteScroll } from "@/components/infinite-scroll";
 
 import { VideoRowCard } from "../components/video-row-card";
 import { VideoGridCard } from "../components/video-grid-card";
+import { Suspense } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 
 interface SuggestionsSectionProps {
   videoId: string;
@@ -13,6 +15,19 @@ interface SuggestionsSectionProps {
 }
 
 export const SuggestionsSection = ({
+  videoId,
+  isManual,
+}: SuggestionsSectionProps) => {
+  return (
+    <Suspense fallback={<p>Loading...</p>}>
+      <ErrorBoundary fallback={<p>Error</p>}>
+        <SuggestionsSectionSuspense videoId={videoId} isManual={isManual} />
+      </ErrorBoundary>
+    </Suspense>
+  );
+};
+
+const SuggestionsSectionSuspense = ({
   videoId,
   isManual,
 }: SuggestionsSectionProps) => {
