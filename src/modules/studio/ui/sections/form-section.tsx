@@ -55,6 +55,7 @@ import {
 
 import { ThumbnailUploadModal } from "../components/thumbnail-upload-modal";
 import { ThumbnailGenerateModal } from "../components/thumbnail-generate-modal";
+import { APP_URL } from "@/constants";
 
 interface FormSectionProps {
   videoId: string;
@@ -213,9 +214,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
     await update.mutateAsync(data);
   };
 
-  const fullUrl = `${
-    process.env.VERCEL_URL || "http://localhost:3000"
-  }/videos/${videoId}`;
+  const fullUrl = `${APP_URL || "http://localhost:3000"}/videos/${videoId}`;
 
   const [isCopied, setIsCopied] = useState(false);
 

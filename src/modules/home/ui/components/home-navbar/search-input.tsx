@@ -1,3 +1,4 @@
+import { APP_URL } from "@/constants";
 import { SearchIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -9,7 +10,7 @@ export const SearchInput = () => {
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const url = new URL("/search", process.env.VERCEL_URL);
+    const url = new URL("/search", APP_URL);
 
     const newQuery = value.trim();
 
