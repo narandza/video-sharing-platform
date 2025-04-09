@@ -1,9 +1,31 @@
 import { SearchIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 
 export const SearchInput = () => {
-  // TODO: Add search functionality
+  const router = useRouter();
+  const [value, setValue] = useState("");
+
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const url = new URL("/search", process.env.VERCEL_URL);
+
+    const newQuery = value.trim();
+
+    url.searchParams.set("query", encodeURIComponent(newQuery));
+
+    if (newQuery === "") {
+      url.searchParams.delete("query");
+    }
+
+    setValue(newQuery);
+
+    router.push(url.toString());
+  };
+
   return (
-    <form className="flex w-full max-w-[600px] ">
+    <form className="flex w-full max-w-[600px]" onSubmit={handleSearch}>
       <div className="relative w-full">
         <input
           type="text"
