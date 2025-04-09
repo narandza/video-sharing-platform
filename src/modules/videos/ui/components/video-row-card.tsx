@@ -8,13 +8,13 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { Skeleton } from "@/components/ui/skeleton";
 import { UserAvatar } from "@/components/user-avatar";
 import { UserInfo } from "@/modules/users/ui/components/user-info";
 
 import { VideoMenu } from "./video-menu";
 import { VideoGetManyOutput } from "../../types";
 import { VideoThumbnail, VideoThumbnailSkeleton } from "./video-thumbnail";
-import { Skeleton } from "@/components/ui/skeleton";
 
 const videoRowCardVariants = cva("group flex min-w-0", {
   variants: {

@@ -1,5 +1,8 @@
 "use client";
 
+import { Suspense } from "react";
+import { ErrorBoundary } from "react-error-boundary";
+
 import { trpc } from "@/trpc/client";
 import { DEFAULT_LIMIT } from "@/constants";
 import { InfiniteScroll } from "@/components/infinite-scroll";
@@ -12,8 +15,6 @@ import {
   VideoGridCard,
   VideoGridCardSkeleton,
 } from "../components/video-grid-card";
-import { Suspense } from "react";
-import { ErrorBoundary } from "react-error-boundary";
 
 interface SuggestionsSectionProps {
   videoId: string;
