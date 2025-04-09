@@ -1,10 +1,11 @@
 "use client";
 
-import { DEFAULT_LIMIT } from "@/constants";
 import { trpc } from "@/trpc/client";
+import { DEFAULT_LIMIT } from "@/constants";
+import { InfiniteScroll } from "@/components/infinite-scroll";
+
 import { VideoRowCard } from "../components/video-row-card";
 import { VideoGridCard } from "../components/video-grid-card";
-import { InfiniteScroll } from "@/components/infinite-scroll";
 
 interface SuggestionsSectionProps {
   videoId: string;

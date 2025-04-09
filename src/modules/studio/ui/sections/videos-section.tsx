@@ -19,7 +19,7 @@ import { DEFAULT_LIMIT } from "@/constants";
 import { snakeCaseToTitle } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
 import { InfiniteScroll } from "@/components/infinite-scroll";
-import { VideoThumbnail } from "@/modules/videos/ui/components/video-thumnail";
+import { VideoThumbnail } from "@/modules/videos/ui/components/video-thumbnail";
 
 export const VideosSection = () => {
   return (
