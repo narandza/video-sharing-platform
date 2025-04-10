@@ -1,3 +1,5 @@
+"use client";
+
 import { APP_URL } from "@/constants";
 import { SearchIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -10,7 +12,10 @@ export const SearchInput = () => {
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const url = new URL("/search", APP_URL);
+    const url = new URL(
+      "/search",
+      APP_URL ? `https://${APP_URL}` : "http://localhost:3000"
+    );
 
     const newQuery = value.trim();
 
