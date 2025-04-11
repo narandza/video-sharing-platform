@@ -2,8 +2,8 @@ import { z } from "zod";
 import { and, desc, eq, getTableColumns, ilike, lt, or } from "drizzle-orm";
 
 import { db } from "@/db";
-import { users, videoReactions, videoViews, videos } from "@/db/schema";
 import { baseProcedure, createTRPCRouter } from "@/trpc/init";
+import { users, videoReactions, videoViews, videos } from "@/db/schema";
 
 export const searchRouter = createTRPCRouter({
   getMany: baseProcedure

@@ -1,3 +1,4 @@
+import { ResultsSection } from "../sections/results-section";
 import { CategoriesSection } from "../sections/categories-section";
 
 interface SearchViewProps {
