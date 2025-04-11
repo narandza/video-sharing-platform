@@ -2,8 +2,14 @@ import { trpc } from "@/trpc/client";
 import { DEFAULT_LIMIT } from "@/constants";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { InfiniteScroll } from "@/components/infinite-scroll";
-import { VideoRowCard } from "@/modules/videos/ui/components/video-row-card";
-import { VideoGridCard } from "@/modules/videos/ui/components/video-grid-card";
+import {
+  VideoRowCard,
+  VideoRowCardSkeleton,
+} from "@/modules/videos/ui/components/video-row-card";
+import {
+  VideoGridCard,
+  VideoGridCardSkeleton,
+} from "@/modules/videos/ui/components/video-grid-card";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 
@@ -14,11 +20,28 @@ interface ResultsSectionProps {
 
 export const ResultSection = ({ query, categoryId }: ResultsSectionProps) => {
   return (
-    <Suspense fallback={<p>Loading...</p>}>
+    <Suspense fallback={<ResultSectionSkeleton />}>
       <ErrorBoundary fallback={<p>Error</p>}>
         <ResultsSectionSuspense query={query} categoryId={categoryId} />
       </ErrorBoundary>
     </Suspense>
+  );
+};
+
+const ResultSectionSkeleton = () => {
+  return (
+    <div>
+      <div className="hidden flex-col gap-4 md:flex">
+        {Array.from({ length: 5 }).map((_, index) => (
+          <VideoRowCardSkeleton key={index} />
+        ))}
+      </div>
+      <div className="flex flex-col gap-4 gap-y-10 pt-6 md:hidden">
+        {Array.from({ length: 5 }).map((_, index) => (
+          <VideoGridCardSkeleton key={index} />
+        ))}
+      </div>
+    </div>
   );
 };
 
