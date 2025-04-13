@@ -20,7 +20,10 @@ interface ResultsSectionProps {
 
 export const ResultSection = ({ query, categoryId }: ResultsSectionProps) => {
   return (
-    <Suspense fallback={<ResultSectionSkeleton />}>
+    <Suspense
+      key={`${query}-${categoryId}`}
+      fallback={<ResultSectionSkeleton />}
+    >
       <ErrorBoundary fallback={<p>Error</p>}>
         <ResultsSectionSuspense query={query} categoryId={categoryId} />
       </ErrorBoundary>
