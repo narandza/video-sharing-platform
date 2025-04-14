@@ -1,7 +1,9 @@
+import { Suspense } from "react";
+import { ErrorBoundary } from "react-error-boundary";
+
 import { trpc } from "@/trpc/client";
 import { DEFAULT_LIMIT } from "@/constants";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { InfiniteScroll } from "@/components/infinite-scroll";
 import {
   VideoRowCard,
   VideoRowCardSkeleton,
@@ -10,8 +12,7 @@ import {
   VideoGridCard,
   VideoGridCardSkeleton,
 } from "@/modules/videos/ui/components/video-grid-card";
-import { Suspense } from "react";
-import { ErrorBoundary } from "react-error-boundary";
+import { InfiniteScroll } from "@/components/infinite-scroll";
 
 interface ResultsSectionProps {
   query: string | undefined;
