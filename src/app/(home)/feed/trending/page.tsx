@@ -1,4 +1,5 @@
 import { DEFAULT_LIMIT } from "@/constants";
+import { TrendingView } from "@/modules/home/ui/views/trending-view";
 import { HydrateClient, trpc } from "@/trpc/server";
 
 export const dynamic = "force-dynamic";
@@ -8,7 +9,11 @@ const Page = async () => {
     limit: DEFAULT_LIMIT,
   });
 
-  return <HydrateClient>TODO: trending page</HydrateClient>;
+  return (
+    <HydrateClient>
+      <TrendingView />
+    </HydrateClient>
+  );
 };
 
 export default Page;

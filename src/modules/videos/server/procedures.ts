@@ -30,7 +30,7 @@ import {
 } from "@/trpc/init";
 
 export const videosRouter = createTRPCRouter({
-  getTrending: baseProcedure
+  getManyTrending: baseProcedure
     .input(
       z.object({
         cursor: z
