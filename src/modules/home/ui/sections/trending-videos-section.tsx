@@ -1,14 +1,15 @@
 "use client";
 
-import { InfiniteScroll } from "@/components/infinite-scroll";
+import { Suspense } from "react";
+import { ErrorBoundary } from "react-error-boundary";
+
+import { trpc } from "@/trpc/client";
 import { DEFAULT_LIMIT } from "@/constants";
 import {
   VideoGridCard,
   VideoGridCardSkeleton,
 } from "@/modules/videos/ui/components/video-grid-card";
-import { trpc } from "@/trpc/client";
-import { Suspense } from "react";
-import { ErrorBoundary } from "react-error-boundary";
+import { InfiniteScroll } from "@/components/infinite-scroll";
 
 export const TrendingVideosSection = () => {
   return (

@@ -11,10 +11,6 @@ import {
   or,
 } from "drizzle-orm";
 
-import { db } from "@/db";
-import { mux } from "@/lib/mux";
-import { TRPCError } from "@trpc/server";
-import { workflow } from "@/lib/workflow";
 import {
   subscriptions,
   users,
@@ -28,6 +24,10 @@ import {
   createTRPCRouter,
   protectedProcedure,
 } from "@/trpc/init";
+import { db } from "@/db";
+import { mux } from "@/lib/mux";
+import { TRPCError } from "@trpc/server";
+import { workflow } from "@/lib/workflow";
 
 export const videosRouter = createTRPCRouter({
   getManyTrending: baseProcedure
