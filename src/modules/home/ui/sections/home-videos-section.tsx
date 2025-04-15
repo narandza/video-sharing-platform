@@ -2,7 +2,10 @@
 
 import { InfiniteScroll } from "@/components/infinite-scroll";
 import { DEFAULT_LIMIT } from "@/constants";
-import { VideoGridCard } from "@/modules/videos/ui/components/video-grid-card";
+import {
+  VideoGridCard,
+  VideoGridCardSkeleton,
+} from "@/modules/videos/ui/components/video-grid-card";
 import { trpc } from "@/trpc/client";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
@@ -13,7 +16,7 @@ interface HomeVideosSectionProps {
 
 export const HomeVideosSection = ({ categoryId }: HomeVideosSectionProps) => {
   return (
-    <Suspense fallback={<HomeVideosSectionSkeleton />}>
+    <Suspense key={categoryId} fallback={<HomeVideosSectionSkeleton />}>
       <ErrorBoundary fallback={<p>Error</p>}>
         <HomeVideosSectionSuspense categoryId={categoryId} />
       </ErrorBoundary>
@@ -22,7 +25,13 @@ export const HomeVideosSection = ({ categoryId }: HomeVideosSectionProps) => {
 };
 
 const HomeVideosSectionSkeleton = () => {
-  return <div className="">loading...</div>;
+  return (
+    <div className="">
+      {Array.from({ length: 18 }).map((_, index) => (
+        <VideoGridCardSkeleton key={index} />
+      ))}
+    </div>
+  );
 };
 
 const HomeVideosSectionSuspense = ({ categoryId }: HomeVideosSectionProps) => {
