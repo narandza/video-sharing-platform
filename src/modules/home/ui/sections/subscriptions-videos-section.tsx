@@ -22,7 +22,13 @@ export const SubscriptionsVideosSection = () => {
 };
 
 const SubscriptionsVideosSectionSkeleton = () => {
-  return <div className="">loading</div>;
+  return (
+    <div>
+      {Array.from({ length: 18 }).map((_, index) => (
+        <VideoGridCardSkeleton key={index} />
+      ))}
+    </div>
+  );
 };
 
 const SubscriptionsVideosSectionSuspense = () => {
