@@ -1,3 +1,5 @@
+"use client";
+
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 
@@ -19,7 +21,7 @@ interface ResultsSectionProps {
   categoryId: string | undefined;
 }
 
-export const ResultSection = ({ query, categoryId }: ResultsSectionProps) => {
+export const ResultsSection = ({ query, categoryId }: ResultsSectionProps) => {
   return (
     <Suspense
       key={`${query}-${categoryId}`}
