@@ -26,14 +26,15 @@ const SubscriptionsVideosSectionSkeleton = () => {
 };
 
 const SubscriptionsVideosSectionSuspense = () => {
-  const [videos, query] = trpc.videos.getManyTrending.useSuspenseInfiniteQuery(
-    {
-      limit: DEFAULT_LIMIT,
-    },
-    {
-      getNextPageParam: (lastPage) => lastPage.nextCursor,
-    }
-  );
+  const [videos, query] =
+    trpc.videos.getManySubscribed.useSuspenseInfiniteQuery(
+      {
+        limit: DEFAULT_LIMIT,
+      },
+      {
+        getNextPageParam: (lastPage) => lastPage.nextCursor,
+      }
+    );
 
   return (
     <div>
@@ -44,11 +45,6 @@ const SubscriptionsVideosSectionSuspense = () => {
             <VideoGridCard key={video.id} data={video} />
           ))}
       </div>
-      <InfiniteScroll
-        hasNextPage={query.hasNextPage}
-        isFetchingNextPage={query.isFetchingNextPage}
-        fetchNextPage={query.fetchNextPage}
-      />
     </div>
   );
 };
