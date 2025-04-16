@@ -45,6 +45,11 @@ const SubscriptionsVideosSectionSuspense = () => {
             <VideoGridCard key={video.id} data={video} />
           ))}
       </div>
+      <InfiniteScroll
+        hasNextPage={query.hasNextPage}
+        isFetchingNextPage={query.isFetchingNextPage}
+        fetchNextPage={query.fetchNextPage}
+      />
     </div>
   );
 };
