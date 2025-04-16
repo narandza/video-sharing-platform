@@ -5,7 +5,10 @@ import { ErrorBoundary } from "react-error-boundary";
 
 import { trpc } from "@/trpc/client";
 import { DEFAULT_LIMIT } from "@/constants";
-import { VideoGridCard } from "@/modules/videos/ui/components/video-grid-card";
+import {
+  VideoGridCard,
+  VideoGridCardSkeleton,
+} from "@/modules/videos/ui/components/video-grid-card";
 import { InfiniteScroll } from "@/components/infinite-scroll";
 
 export const HistoryVideosSection = () => {
@@ -19,7 +22,13 @@ export const HistoryVideosSection = () => {
 };
 
 const HistoryVideosSectionSkeleton = () => {
-  return <div className="">loading</div>;
+  return (
+    <div>
+      {Array.from({ length: 18 }).map((_, index) => (
+        <VideoGridCardSkeleton key={index} />
+      ))}
+    </div>
+  );
 };
 
 const HistoryVideosSectionSuspense = () => {
