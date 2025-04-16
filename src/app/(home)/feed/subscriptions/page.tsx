@@ -1,6 +1,6 @@
 import { DEFAULT_LIMIT } from "@/constants";
 import { HydrateClient, trpc } from "@/trpc/server";
-import { TrendingView } from "@/modules/home/ui/views/trending-view";
+import { SubscriptionsView } from "@/modules/home/ui/views/subscriptions-view";
 
 export const dynamic = "force-dynamic";
 
@@ -11,7 +11,7 @@ const Page = async () => {
 
   return (
     <HydrateClient>
-      <TrendingView />
+      <SubscriptionsView />
     </HydrateClient>
   );
 };
