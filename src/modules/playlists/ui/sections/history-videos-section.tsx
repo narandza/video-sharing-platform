@@ -6,6 +6,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import { trpc } from "@/trpc/client";
 import { DEFAULT_LIMIT } from "@/constants";
 import { VideoGridCard } from "@/modules/videos/ui/components/video-grid-card";
+import { InfiniteScroll } from "@/components/infinite-scroll";
 
 export const HistoryVideosSection = () => {
   return (
@@ -40,6 +41,11 @@ const HistoryVideosSectionSuspense = () => {
             <VideoGridCard key={video.id} data={video} />
           ))}
       </div>
+      <InfiniteScroll
+        hasNextPage={query.hasNextPage}
+        isFetchingNextPage={query.isFetchingNextPage}
+        fetchNextPage={query.fetchNextPage}
+      />
     </div>
   );
 };
