@@ -27,7 +27,7 @@ export const HistoryVideosSection = () => {
 
 const HistoryVideosSectionSkeleton = () => {
   return (
-    <div>
+    <>
       <div className="flex flex-col gap-4 gap-y-10 md:hidden">
         {Array.from({ length: 18 }).map((_, index) => (
           <VideoGridCardSkeleton key={index} />
@@ -38,7 +38,7 @@ const HistoryVideosSectionSkeleton = () => {
           <VideoRowCardSkeleton key={index} />
         ))}
       </div>
-    </div>
+    </>
   );
 };
 
@@ -53,7 +53,7 @@ const HistoryVideosSectionSuspense = () => {
   );
 
   return (
-    <div>
+    <>
       <div className="flex flex-col gap-4 gap-y-10 md:hidden">
         {videos.pages
           .flatMap((page) => page.items)
@@ -73,6 +73,6 @@ const HistoryVideosSectionSuspense = () => {
         isFetchingNextPage={query.isFetchingNextPage}
         fetchNextPage={query.fetchNextPage}
       />
-    </div>
+    </>
   );
 };
