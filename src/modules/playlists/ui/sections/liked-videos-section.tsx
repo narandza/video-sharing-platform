@@ -5,6 +5,15 @@ import { ErrorBoundary } from "react-error-boundary";
 
 import { trpc } from "@/trpc/client";
 import { DEFAULT_LIMIT } from "@/constants";
+import {
+  VideoGridCard,
+  VideoGridCardSkeleton,
+} from "@/modules/videos/ui/components/video-grid-card";
+import { InfiniteScroll } from "@/components/infinite-scroll";
+import {
+  VideoRowCard,
+  VideoRowCardSkeleton,
+} from "@/modules/videos/ui/components/video-row-card";
 
 export const LikedVideosSection = () => {
   return (
@@ -21,7 +30,7 @@ const LikedVideosSectionSkeleton = () => {
 };
 
 const LikedVideosSectionSuspense = () => {
-  const [videos, query] = trpc.playlists.getHistory.useSuspenseInfiniteQuery(
+  const [videos, query] = trpc.playlists.getLiked.useSuspenseInfiniteQuery(
     {
       limit: DEFAULT_LIMIT,
     },
@@ -30,5 +39,27 @@ const LikedVideosSectionSuspense = () => {
     }
   );
 
-  return <>liked videos section</>;
+  return (
+    <>
+      <div className="flex flex-col gap-4 gap-y-10 md:hidden">
+        {videos.pages
+          .flatMap((page) => page.items)
+          .map((video) => (
+            <VideoGridCard key={video.id} data={video} />
+          ))}
+      </div>
+      <div className="hidden flex-col gap-4  md:flex">
+        {videos.pages
+          .flatMap((page) => page.items)
+          .map((video) => (
+            <VideoRowCard key={video.id} data={video} size="compact" />
+          ))}
+      </div>
+      <InfiniteScroll
+        hasNextPage={query.hasNextPage}
+        isFetchingNextPage={query.isFetchingNextPage}
+        fetchNextPage={query.fetchNextPage}
+      />
+    </>
+  );
 };
