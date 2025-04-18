@@ -1,9 +1,9 @@
-import { and, desc, eq, getTableColumns, lt, or } from "drizzle-orm";
 import { z } from "zod";
+import { and, desc, eq, getTableColumns, lt, or } from "drizzle-orm";
 
-import { users, videoReactions, videoViews, videos } from "@/db/schema";
-import { createTRPCRouter, protectedProcedure } from "@/trpc/init";
 import { db } from "@/db";
+import { createTRPCRouter, protectedProcedure } from "@/trpc/init";
+import { users, videoReactions, videoViews, videos } from "@/db/schema";
 
 export const playlistsRouter = createTRPCRouter({
   getLiked: protectedProcedure

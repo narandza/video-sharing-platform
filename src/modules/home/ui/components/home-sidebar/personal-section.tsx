@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { HistoryIcon, ListVideoIcon, ThumbsUpIcon } from "lucide-react";
 
 import {
@@ -10,7 +11,6 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import Link from "next/link";
 import { useAuth, useClerk } from "@clerk/nextjs";
 
 const items = [

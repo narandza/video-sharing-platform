@@ -6,14 +6,14 @@ import { ErrorBoundary } from "react-error-boundary";
 import { trpc } from "@/trpc/client";
 import { DEFAULT_LIMIT } from "@/constants";
 import {
+  VideoRowCard,
+  VideoRowCardSkeleton,
+} from "@/modules/videos/ui/components/video-row-card";
+import {
   VideoGridCard,
   VideoGridCardSkeleton,
 } from "@/modules/videos/ui/components/video-grid-card";
 import { InfiniteScroll } from "@/components/infinite-scroll";
-import {
-  VideoRowCard,
-  VideoRowCardSkeleton,
-} from "@/modules/videos/ui/components/video-row-card";
 
 export const HistoryVideosSection = () => {
   return (
