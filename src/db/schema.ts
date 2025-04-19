@@ -58,6 +58,14 @@ export const playlists = pgTable("playlists", {
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
+export const playlistRelations = relations(playlists, ({ one, many }) => ({
+  user: one(users, {
+    fields: [playlists.userId],
+    references: [users.id],
+  }),
+  playlistVideos: many(playlistVideos),
+}));
+
 export const reactionType = pgEnum("reaction_type", ["like", "dislike"]);
 
 export const users = pgTable(
@@ -86,6 +94,7 @@ export const userRelations = relations(users, ({ many }) => ({
   }),
   comments: many(comments),
   commentsReactions: many(commentReactions),
+  playlists: many(playlists),
 }));
 
 export const subscriptions = pgTable(
