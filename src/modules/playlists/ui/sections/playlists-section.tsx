@@ -5,6 +5,7 @@ import { ErrorBoundary } from "react-error-boundary";
 
 import { trpc } from "@/trpc/client";
 import { DEFAULT_LIMIT } from "@/constants";
+import { InfiniteScroll } from "@/components/infinite-scroll";
 
 export const PlaylistsSection = () => {
   return (
@@ -17,11 +18,11 @@ export const PlaylistsSection = () => {
 };
 
 const PlaylistsSectionSkeleton = () => {
-  return <>Loading...</>;
+  return <>loading...</>;
 };
 
 const PlaylistsSectionSuspense = () => {
-  const [videos, query] = trpc.playlists.getHistory.useSuspenseInfiniteQuery(
+  const [playlists, query] = trpc.playlists.getMany.useSuspenseInfiniteQuery(
     {
       limit: DEFAULT_LIMIT,
     },
@@ -30,5 +31,22 @@ const PlaylistsSectionSuspense = () => {
     }
   );
 
-  return <>section</>;
+  return (
+    <>
+      <div className="hidden flex-col gap-4  md:flex">
+        {playlists.pages
+          .flatMap((page) => page.items)
+          .map((playlist) => (
+            <div className="" key={playlist.id}>
+              TODO
+            </div>
+          ))}
+      </div>
+      <InfiniteScroll
+        hasNextPage={query.hasNextPage}
+        isFetchingNextPage={query.isFetchingNextPage}
+        fetchNextPage={query.fetchNextPage}
+      />
+    </>
+  );
 };
