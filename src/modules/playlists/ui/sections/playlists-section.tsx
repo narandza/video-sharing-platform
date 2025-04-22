@@ -6,6 +6,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import { trpc } from "@/trpc/client";
 import { DEFAULT_LIMIT } from "@/constants";
 import { InfiniteScroll } from "@/components/infinite-scroll";
+import { PlaylistGridCard } from "../components/playlist-grid-card";
 
 export const PlaylistsSection = () => {
   return (
@@ -37,9 +38,7 @@ const PlaylistsSectionSuspense = () => {
         {playlists.pages
           .flatMap((page) => page.items)
           .map((playlist) => (
-            <div className="" key={playlist.id}>
-              TODO
-            </div>
+            <PlaylistGridCard data={playlist} key={playlist.id} />
           ))}
       </div>
       <InfiniteScroll
