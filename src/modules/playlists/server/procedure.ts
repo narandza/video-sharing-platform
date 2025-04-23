@@ -1,8 +1,6 @@
 import { z } from "zod";
 import { and, desc, eq, getTableColumns, lt, or } from "drizzle-orm";
 
-import { db } from "@/db";
-import { createTRPCRouter, protectedProcedure } from "@/trpc/init";
 import {
   playlistVideos,
   playlists,
@@ -11,7 +9,9 @@ import {
   videoViews,
   videos,
 } from "@/db/schema";
+import { db } from "@/db";
 import { TRPCError } from "@trpc/server";
+import { createTRPCRouter, protectedProcedure } from "@/trpc/init";
 
 export const playlistsRouter = createTRPCRouter({
   getMany: protectedProcedure

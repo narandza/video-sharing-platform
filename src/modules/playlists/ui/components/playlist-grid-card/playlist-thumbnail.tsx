@@ -1,9 +1,10 @@
-import { Skeleton } from "@/components/ui/skeleton";
-import { cn } from "@/lib/utils";
-import { THUMBNAIL_FALLBACK } from "@/modules/videos/constants";
-import { ListVideoIcon, PlayIcon } from "lucide-react";
 import Image from "next/image";
 import { useMemo } from "react";
+import { ListVideoIcon, PlayIcon } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+import { Skeleton } from "@/components/ui/skeleton";
+import { THUMBNAIL_FALLBACK } from "@/modules/videos/constants";
 
 interface PlaylistThumbnailProps {
   title: string;

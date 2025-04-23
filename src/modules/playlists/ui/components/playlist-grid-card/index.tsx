@@ -1,6 +1,8 @@
-import { PlaylistGetManyOutput } from "@/modules/playlists/types";
-import { THUMBNAIL_FALLBACK } from "@/modules/videos/constants";
 import Link from "next/link";
+
+import { THUMBNAIL_FALLBACK } from "@/modules/videos/constants";
+import { PlaylistGetManyOutput } from "@/modules/playlists/types";
+
 import {
   PlaylistThumbnail,
   PlaylistThumbnailSkeleton,

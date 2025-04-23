@@ -2,10 +2,6 @@ import { z } from "zod";
 import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 
-import { trpc } from "@/trpc/client";
-import { Button } from "@/components/ui/button";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { ResponsiveModal } from "@/components/responsive-modal";
 import {
   Form,
   FormControl,
@@ -14,7 +10,11 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { trpc } from "@/trpc/client";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { ResponsiveModal } from "@/components/responsive-modal";
 
 interface PlaylistCreateModalProps {
   open: boolean;

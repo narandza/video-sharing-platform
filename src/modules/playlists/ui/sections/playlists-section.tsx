@@ -6,7 +6,11 @@ import { ErrorBoundary } from "react-error-boundary";
 import { trpc } from "@/trpc/client";
 import { DEFAULT_LIMIT } from "@/constants";
 import { InfiniteScroll } from "@/components/infinite-scroll";
-import { PlaylistGridCard, PlaylistGridCardSkeleton } from "../components/playlist-grid-card";
+
+import {
+  PlaylistGridCard,
+  PlaylistGridCardSkeleton,
+} from "../components/playlist-grid-card";
 
 export const PlaylistsSection = () => {
   return (
@@ -19,13 +23,13 @@ export const PlaylistsSection = () => {
 };
 
 const PlaylistsSectionSkeleton = () => {
-    return (
-      <div className="gap-4 gap-y-10 grid gird-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 [@media(min-width:1920px)]:grid-cols-5  [@media(min-width:2200px)]:grid-cols-6">
-        {Array.from({ length: 18 }).map((_, index) => (
-          <PlaylistGridCardSkeleton key={index} />
-        ))}
-      </div>
-    );
+  return (
+    <div className="gap-4 gap-y-10 grid gird-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 [@media(min-width:1920px)]:grid-cols-5  [@media(min-width:2200px)]:grid-cols-6">
+      {Array.from({ length: 18 }).map((_, index) => (
+        <PlaylistGridCardSkeleton key={index} />
+      ))}
+    </div>
+  );
 };
 
 const PlaylistsSectionSuspense = () => {

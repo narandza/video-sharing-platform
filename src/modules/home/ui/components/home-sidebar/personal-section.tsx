@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { HistoryIcon, ListVideoIcon, ThumbsUpIcon } from "lucide-react";
 
 import {
@@ -12,7 +13,6 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { useAuth, useClerk } from "@clerk/nextjs";
-import { usePathname } from "next/navigation";
 
 const items = [
   {

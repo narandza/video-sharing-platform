@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FlameIcon, HomeIcon, PlaySquareIcon } from "lucide-react";
 
 import {
@@ -10,9 +11,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-
 import { useAuth, useClerk } from "@clerk/nextjs";
-import { usePathname } from "next/navigation";
 
 const items = [
   { title: "Home", url: "/", icon: HomeIcon },
