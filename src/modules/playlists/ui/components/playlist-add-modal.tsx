@@ -1,3 +1,4 @@
+import { InfiniteScroll } from "@/components/infinite-scroll";
 import { ResponsiveModal } from "@/components/responsive-modal";
 import { Button } from "@/components/ui/button";
 import { DEFAULT_LIMIT } from "@/constants";
@@ -17,14 +18,19 @@ export const PlaylistAddModal = ({
 }: PlaylistAddModalProps) => {
   const utils = trpc.useUtils();
 
-  const { data: playlists, isLoading } =
-    trpc.playlists.getManyForVideo.useInfiniteQuery(
-      { limit: DEFAULT_LIMIT, videoId },
-      {
-        getNextPageParam: (lastPage) => lastPage.nextCursor,
-        enabled: !!videoId && open,
-      }
-    );
+  const {
+    data: playlists,
+    isLoading,
+    hasNextPage,
+    isFetchingNextPage,
+    fetchNextPage,
+  } = trpc.playlists.getManyForVideo.useInfiniteQuery(
+    { limit: DEFAULT_LIMIT, videoId },
+    {
+      getNextPageParam: (lastPage) => lastPage.nextCursor,
+      enabled: !!videoId && open,
+    }
+  );
 
   const handleOpenChange = (newOpen: boolean) => {
     utils.playlists.getManyForVideo.reset();
@@ -63,6 +69,15 @@ export const PlaylistAddModal = ({
                 {playlist.name}
               </Button>
             ))}
+
+        {!isLoading && (
+          <InfiniteScroll
+            hasNextPage={hasNextPage}
+            isFetchingNextPage={isFetchingNextPage}
+            fetchNextPage={fetchNextPage}
+            isManual
+          />
+        )}
       </div>
     </ResponsiveModal>
   );
