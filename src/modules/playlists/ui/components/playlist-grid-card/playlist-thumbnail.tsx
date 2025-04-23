@@ -17,7 +17,7 @@ export const PlaylistThumbnail = ({
   imageUrl,
 }: PlaylistThumbnailProps) => {
   return (
-    <div className={cn("relative pt-3 group", className)}>
+    <div className={cn("relative pt-3 ", className)}>
       {/* Stack effect Layers */}
       <div className="relative">
         {/* Background layers */}
