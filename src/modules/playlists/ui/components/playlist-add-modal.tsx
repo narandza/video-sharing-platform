@@ -1,7 +1,8 @@
 import { ResponsiveModal } from "@/components/responsive-modal";
+import { Button } from "@/components/ui/button";
 import { DEFAULT_LIMIT } from "@/constants";
 import { trpc } from "@/trpc/client";
-import { Loader2Icon } from "lucide-react";
+import { Loader2Icon, SquareCheckIcon, SquareIcon } from "lucide-react";
 
 interface PlaylistAddModalProps {
   open: boolean;
@@ -16,13 +17,14 @@ export const PlaylistAddModal = ({
 }: PlaylistAddModalProps) => {
   const utils = trpc.useUtils();
 
-  const { data, isLoading } = trpc.playlists.getManyForVideo.useInfiniteQuery(
-    { limit: DEFAULT_LIMIT, videoId },
-    {
-      getNextPageParam: (lastPage) => lastPage.nextCursor,
-      enabled: !!videoId && open,
-    }
-  );
+  const { data: playlists, isLoading } =
+    trpc.playlists.getManyForVideo.useInfiniteQuery(
+      { limit: DEFAULT_LIMIT, videoId },
+      {
+        getNextPageParam: (lastPage) => lastPage.nextCursor,
+        enabled: !!videoId && open,
+      }
+    );
 
   const handleOpenChange = (newOpen: boolean) => {
     utils.playlists.getManyForVideo.reset();
@@ -43,7 +45,24 @@ export const PlaylistAddModal = ({
           </div>
         )}
 
-        {JSON.stringify(data)}
+        {!isLoading &&
+          playlists?.pages
+            .flatMap((page) => page.items)
+            .map((playlist) => (
+              <Button
+                key={playlist.id}
+                variant="ghost"
+                className="w-full justify-start px-2 [&_svg]:size-5"
+                size="lg"
+              >
+                {playlist.containsVideo ? (
+                  <SquareCheckIcon className="mr-2" />
+                ) : (
+                  <SquareIcon className="mr-2" />
+                )}
+                {playlist.name}
+              </Button>
+            ))}
       </div>
     </ResponsiveModal>
   );
