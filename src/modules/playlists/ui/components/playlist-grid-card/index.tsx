@@ -5,7 +5,7 @@ import {
   PlaylistThumbnail,
   PlaylistThumbnailSkeleton,
 } from "./playlist-thumbnail";
-import { PlaylistInfo } from "./playlist-info";
+import { PlaylistInfo, PlaylistInfoSkeleton } from "./playlist-info";
 
 interface PlaylistGridCardProps {
   data: PlaylistGetManyOutput["items"][number];
