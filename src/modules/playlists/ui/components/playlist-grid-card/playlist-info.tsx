@@ -1,8 +1,21 @@
+import { Skeleton } from "@/components/ui/skeleton";
 import { PlaylistGetManyOutput } from "@/modules/playlists/types";
 
 interface PlaylistInfoProps {
   data: PlaylistGetManyOutput["items"][number];
 }
+
+export const PlaylistInfoSkeleton = () => {
+  return (
+    <div className="flex gap-3">
+      <div className="min-w-0 flex-1 space-y-2">
+        <Skeleton className="w-[90%] h-5" />
+        <Skeleton className="w-[70%] h-5" />
+        <Skeleton className="w-[50%] h-5" />
+      </div>
+    </div>
+  );
+};
 
 export const PlaylistInfo = ({ data }: PlaylistInfoProps) => {
   return (
