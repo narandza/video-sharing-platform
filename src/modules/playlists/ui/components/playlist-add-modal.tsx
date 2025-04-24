@@ -1,10 +1,11 @@
+import { toast } from "sonner";
+import { Loader2Icon, SquareCheckIcon, SquareIcon } from "lucide-react";
+
+import { trpc } from "@/trpc/client";
+import { DEFAULT_LIMIT } from "@/constants";
+import { Button } from "@/components/ui/button";
 import { InfiniteScroll } from "@/components/infinite-scroll";
 import { ResponsiveModal } from "@/components/responsive-modal";
-import { Button } from "@/components/ui/button";
-import { DEFAULT_LIMIT } from "@/constants";
-import { trpc } from "@/trpc/client";
-import { Loader2Icon, SquareCheckIcon, SquareIcon } from "lucide-react";
-import { toast } from "sonner";
 
 interface PlaylistAddModalProps {
   open: boolean;
