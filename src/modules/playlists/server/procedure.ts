@@ -14,6 +14,24 @@ import { TRPCError } from "@trpc/server";
 import { createTRPCRouter, protectedProcedure } from "@/trpc/init";
 
 export const playlistsRouter = createTRPCRouter({
+  remove: protectedProcedure
+    .input(z.object({ id: z.string().uuid() }))
+    .mutation(async ({ input, ctx }) => {
+      const { id } = input;
+      const { id: userId } = ctx.user;
+
+      const [deletedPlaylist] = await db
+        .delete(playlists)
+        .where(and(eq(playlists.id, id), eq(playlists.userId, userId)))
+        .returning();
+
+      if (!deletedPlaylist) {
+        throw new TRPCError({ code: "NOT_FOUND" });
+      }
+
+      return deletedPlaylist;
+    }),
+
   getOne: protectedProcedure
     .input(
       z.object({
