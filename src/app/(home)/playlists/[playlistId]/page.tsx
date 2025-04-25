@@ -1,4 +1,5 @@
 import { DEFAULT_LIMIT } from "@/constants";
+import { VideosView } from "@/modules/playlists/ui/views/videos-view";
 import { HydrateClient, trpc } from "@/trpc/server";
 
 export const dynamic = "force-dynamic ";
@@ -15,7 +16,7 @@ const Page = async ({ params }: PageProps) => {
   });
   return (
     <HydrateClient>
-      <div className="">TODO: Playlist View</div>
+      <VideosView playlistId={playlistId} />
     </HydrateClient>
   );
 };
