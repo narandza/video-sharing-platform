@@ -1,11 +1,11 @@
-import { Button } from "@/components/ui/button";
-import { playlists } from "@/db/schema";
-import { trpc } from "@/trpc/client";
+import { toast } from "sonner";
+import { Suspense } from "react";
 import { Trash2Icon } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import { toast } from "sonner";
+
+import { trpc } from "@/trpc/client";
+import { Button } from "@/components/ui/button";
 
 interface PlaylistHeaderSectionProps {
   playlistId: string;
