@@ -7,6 +7,7 @@ import { trpc } from "@/trpc/client";
 import { DEFAULT_LIMIT } from "@/constants";
 import { VideoGridCard } from "@/modules/videos/ui/components/video-grid-card";
 import { VideoRowCard } from "@/modules/videos/ui/components/video-row-card";
+import { InfiniteScroll } from "@/components/infinite-scroll";
 
 interface VideosSectionProps {
   playlistId: string;
@@ -50,10 +51,14 @@ const VideosSectionSuspense = ({ playlistId }: VideosSectionProps) => {
         {videos.pages
           .flatMap((page) => page.items)
           .map((video) => (
-            // eslint-disable-next-line react/jsx-no-undef
             <VideoRowCard key={video.id} data={video} size="compact" />
           ))}
       </div>
+      <InfiniteScroll
+        hasNextPage={query.hasNextPage}
+        isFetchingNextPage={query.isFetchingNextPage}
+        fetchNextPage={query.fetchNextPage}
+      />
     </>
   );
 };
