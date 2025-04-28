@@ -1,3 +1,5 @@
+"use client";
+
 import { toast } from "sonner";
 import { Suspense } from "react";
 import { Trash2Icon } from "lucide-react";
