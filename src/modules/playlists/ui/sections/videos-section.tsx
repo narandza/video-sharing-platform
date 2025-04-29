@@ -1,5 +1,6 @@
 "use client";
 
+import { toast } from "sonner";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 
@@ -14,7 +15,6 @@ import {
   VideoRowCardSkeleton,
 } from "@/modules/videos/ui/components/video-row-card";
 import { InfiniteScroll } from "@/components/infinite-scroll";
-import { toast } from "sonner";
 
 interface VideosSectionProps {
   playlistId: string;
