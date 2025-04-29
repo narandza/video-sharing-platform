@@ -25,5 +25,9 @@ const UserSectionSkeleton = () => {
 const UserSectionSuspense = ({ userId }: UserViewProps) => {
   const [user] = trpc.users.getOne.useSuspenseQuery({ id: userId });
 
-  return <div className="">{JSON.stringify(user)}</div>;
+  return (
+    <div className="flex flex-col">
+      <UserPageBanner user={user} />
+    </div>
+  );
 };
