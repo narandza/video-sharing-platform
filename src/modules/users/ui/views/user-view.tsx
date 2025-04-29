@@ -1,3 +1,5 @@
+import { UserSection } from "../sections/user-section";
+
 interface UserViewProps {
   userId: string;
 }
