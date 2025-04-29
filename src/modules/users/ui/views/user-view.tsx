@@ -1,27 +1,11 @@
-import { trpc } from "@/trpc/client";
-import { Suspense } from "react";
-import { ErrorBoundary } from "react-error-boundary";
-
 interface UserViewProps {
   userId: string;
 }
 
 export const UserView = ({ userId }: UserViewProps) => {
   return (
-    <Suspense fallback={<UserViewSkeleton />}>
-      <ErrorBoundary fallback={<p>Error</p>}>
-        <UserViewSuspense userId={userId} />
-      </ErrorBoundary>
-    </Suspense>
+    <div className="flex flex-col max-w-[1300px] px-4 pt-2.5 mx-auto mb-10 gap-y-6">
+      <UserSection userId={userId} />
+    </div>
   );
-};
-
-const UserViewSkeleton = () => {
-  return <div className="">Loading...</div>;
-};
-
-const UserViewSuspense = ({ userId }: UserViewProps) => {
-  const [user] = trpc.users.getOne.useSuspenseQuery({ id: userId });
-
-  return <div className="">{JSON.stringify(user)}</div>;
 };
