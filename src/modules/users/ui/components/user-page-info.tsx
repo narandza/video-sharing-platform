@@ -1,14 +1,24 @@
 import { UserAvatar } from "@/components/user-avatar";
 import { UserGetOneOutput } from "../../types";
 import { useAuth, useClerk } from "@clerk/nextjs";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { SubscriptionButton } from "@/modules/subscriptions/ui/components/subscription-button";
+import { useSubscription } from "@/modules/subscriptions/hooks/use-subscription";
 
 interface UserPageInfoProps {
   user: UserGetOneOutput;
 }
 
 export const UserPageInfo = ({ user }: UserPageInfoProps) => {
-  const { userId } = useAuth();
+  const { userId, isLoaded } = useAuth();
   const clerk = useClerk();
+
+  const { isPending, onClick } = useSubscription({
+    userId: user.id,
+    isSubscribed: user.viewerSubscribed,
+  });
+
   return (
     <div className="py-6">
       {/* Mobile Layout */}
@@ -34,6 +44,22 @@ export const UserPageInfo = ({ user }: UserPageInfoProps) => {
             </div>
           </div>
         </div>
+        {userId === user.clerkId ? (
+          <Button
+            variant="secondary"
+            asChild
+            className="w-full mt-3 rounded-full"
+          >
+            <Link href="/studio">Go to studio</Link>
+          </Button>
+        ) : (
+          <SubscriptionButton
+            disabled={isPending || !isLoaded}
+            isSubscribed={user.viewerSubscribed}
+            onClick={onClick}
+            className="w-full mt-3"
+          />
+        )}
       </div>
     </div>
   );
