@@ -1,8 +1,10 @@
 "use client";
 
-import { trpc } from "@/trpc/client";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
+
+import { trpc } from "@/trpc/client";
+
 import { UserPageBanner } from "../components/user-page-banner";
 
 interface UserViewProps {

@@ -1,9 +1,11 @@
+import { Edit2Icon } from "lucide-react";
+
 import { cn } from "@/lib/utils";
-import { UserGetOneOutput } from "../../types";
 import { useAuth } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
-import { Edit2Icon } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
+
+import { UserGetOneOutput } from "../../types";
 
 interface UserPageBannerProps {
   user: UserGetOneOutput;
