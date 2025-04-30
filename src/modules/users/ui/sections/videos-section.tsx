@@ -6,6 +6,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import { trpc } from "@/trpc/client";
 import { DEFAULT_LIMIT } from "@/constants";
 import { VideoGridCard } from "@/modules/videos/ui/components/video-grid-card";
+import { InfiniteScroll } from "@/components/infinite-scroll";
 
 interface VideosSectionProps {
   userId: string;
@@ -22,7 +23,7 @@ export const VideosSection = ({ userId }: VideosSectionProps) => {
 };
 
 const VideosSectionSkeleton = () => {
-  return <div className="">Loading</div>;
+  return <div className=""></div>;
 };
 
 const VideosSectionSuspense = ({ userId }: VideosSectionProps) => {
@@ -45,6 +46,11 @@ const VideosSectionSuspense = ({ userId }: VideosSectionProps) => {
             <VideoGridCard key={video.id} data={video} />
           ))}
       </div>
+      <InfiniteScroll
+        hasNextPage={query.hasNextPage}
+        isFetchingNextPage={query.isFetchingNextPage}
+        fetchNextPage={query.fetchNextPage}
+      />
     </>
   );
 };
