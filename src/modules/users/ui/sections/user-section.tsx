@@ -5,8 +5,14 @@ import { ErrorBoundary } from "react-error-boundary";
 
 import { trpc } from "@/trpc/client";
 
-import { UserPageBanner } from "../components/user-page-banner";
-import { UserPageInfo } from "../components/user-page-info";
+import {
+  UserPageBanner,
+  UserPageBannerSkeleton,
+} from "../components/user-page-banner";
+import {
+  UserPageInfo,
+  UserPageInfoSkeleton,
+} from "../components/user-page-info";
 
 interface UserViewProps {
   userId: string;
@@ -23,7 +29,12 @@ export const UserSection = ({ userId }: UserViewProps) => {
 };
 
 const UserSectionSkeleton = () => {
-  return <div className="">Loading...</div>;
+  return (
+    <div className="flex flex-col">
+      <UserPageBannerSkeleton />
+      <UserPageInfoSkeleton />
+    </div>
+  );
 };
 
 const UserSectionSuspense = ({ userId }: UserViewProps) => {
