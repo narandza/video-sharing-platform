@@ -1,6 +1,6 @@
+import { DEFAULT_LIMIT } from "@/constants";
 import { HydrateClient, trpc } from "@/trpc/server";
 import { UserView } from "@/modules/users/ui/views/user-view";
-import { DEFAULT_LIMIT } from "@/constants";
 
 interface PageProps {
   params: Promise<{

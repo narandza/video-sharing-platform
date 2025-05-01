@@ -4,16 +4,16 @@ import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 
 import { trpc } from "@/trpc/client";
+import { Separator } from "@/components/ui/separator";
 
-import {
-  UserPageBanner,
-  UserPageBannerSkeleton,
-} from "../components/user-page-banner";
 import {
   UserPageInfo,
   UserPageInfoSkeleton,
 } from "../components/user-page-info";
-import { Separator } from "@/components/ui/separator";
+import {
+  UserPageBanner,
+  UserPageBannerSkeleton,
+} from "../components/user-page-banner";
 
 interface UserViewProps {
   userId: string;

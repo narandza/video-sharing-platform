@@ -1,8 +1,9 @@
+import { eq } from "drizzle-orm";
+import { redirect } from "next/navigation";
+
 import { db } from "@/db";
 import { users } from "@/db/schema";
 import { auth } from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
-import { eq } from "drizzle-orm";
 
 export const GET = async () => {
   const { userId } = await auth();
