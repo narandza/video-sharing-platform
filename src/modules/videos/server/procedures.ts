@@ -121,6 +121,7 @@ export const videosRouter = createTRPCRouter({
         nextCursor,
       };
     }),
+
   getManyTrending: baseProcedure
     .input(
       z.object({
@@ -202,6 +203,7 @@ export const videosRouter = createTRPCRouter({
         nextCursor,
       };
     }),
+
   getMany: baseProcedure
     .input(
       z.object({
@@ -282,6 +284,7 @@ export const videosRouter = createTRPCRouter({
         nextCursor,
       };
     }),
+
   getOne: baseProcedure
     .input(z.object({ id: z.string().uuid() }))
     .query(async ({ input, ctx }) => {
@@ -450,6 +453,7 @@ export const videosRouter = createTRPCRouter({
 
       return updatedVideo;
     }),
+
   restoreThumbnail: protectedProcedure
     .input(z.object({ id: z.string().uuid() }))
     .mutation(async ({ ctx, input }) => {
@@ -501,6 +505,7 @@ export const videosRouter = createTRPCRouter({
 
       return updatedVideo;
     }),
+
   remove: protectedProcedure
     .input(z.object({ id: z.string().uuid() }))
     .mutation(async ({ ctx, input }) => {
@@ -517,6 +522,7 @@ export const videosRouter = createTRPCRouter({
 
       return removedVideo;
     }),
+
   update: protectedProcedure
     .input(videoUpdateSchema)
     .mutation(async ({ ctx, input }) => {
@@ -542,6 +548,7 @@ export const videosRouter = createTRPCRouter({
         throw new TRPCError({ code: "NOT_FOUND" });
       }
     }),
+
   create: protectedProcedure.mutation(async ({ ctx }) => {
     const { id: userId } = ctx.user;
 

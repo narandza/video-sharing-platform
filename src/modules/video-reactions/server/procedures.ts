@@ -51,6 +51,7 @@ export const videoReactionsRouter = createTRPCRouter({
 
       return createdVideoReaction;
     }),
+
   dislike: protectedProcedure
     .input(z.object({ videoId: z.string().uuid() }))
     .mutation(async ({ input, ctx }) => {

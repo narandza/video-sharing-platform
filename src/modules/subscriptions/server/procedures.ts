@@ -23,6 +23,7 @@ export const subscriptionsRouter = createTRPCRouter({
 
       return createdSubscription;
     }),
+
   remove: protectedProcedure
     .input(z.object({ userId: z.string().uuid() }))
     .mutation(async ({ input, ctx }) => {

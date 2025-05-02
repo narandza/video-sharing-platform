@@ -29,6 +29,7 @@ export const studioRouter = createTRPCRouter({
       }
       return video;
     }),
+
   getMany: protectedProcedure
     .input(
       z.object({

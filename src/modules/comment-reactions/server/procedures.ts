@@ -51,6 +51,7 @@ export const commentReactionsRouter = createTRPCRouter({
 
       return createdCommentReaction;
     }),
+
   dislike: protectedProcedure
     .input(z.object({ commentId: z.string().uuid() }))
     .mutation(async ({ input, ctx }) => {
