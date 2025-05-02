@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Edit2Icon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -7,7 +8,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 import { UserGetOneOutput } from "../../types";
 import { BannerUploadModal } from "./banner-upload-modal";
-import { useState } from "react";
 
 interface UserPageBannerProps {
   user: UserGetOneOutput;
