@@ -14,6 +14,20 @@ import {
 import { trpc } from "@/trpc/client";
 import { UserAvatar } from "@/components/user-avatar";
 import { DEFAULT_LIMIT } from "@/constants";
+import { Skeleton } from "@/components/ui/skeleton";
+
+export const LoadingSkeleton = () => {
+  <>
+    {[1, 2, 3, 4].map((i) => (
+      <SidebarMenuItem key={i}>
+        <SidebarMenuButton disabled>
+          <Skeleton className="size-6 rounded-full shrink-0" />
+          <Skeleton className="h-4 w-full" />
+        </SidebarMenuButton>
+      </SidebarMenuItem>
+    ))}
+  </>;
+};
 
 export const SubscriptionsSection = () => {
   const pathname = usePathname();
