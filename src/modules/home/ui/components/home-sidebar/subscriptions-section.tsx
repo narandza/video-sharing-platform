@@ -15,6 +15,7 @@ import { trpc } from "@/trpc/client";
 import { UserAvatar } from "@/components/user-avatar";
 import { DEFAULT_LIMIT } from "@/constants";
 import { Skeleton } from "@/components/ui/skeleton";
+<<<<<<< HEAD
 import { ListIcon } from "lucide-react";
 
 export const LoadingSkeleton = () => {
@@ -30,6 +31,20 @@ export const LoadingSkeleton = () => {
       ))}
     </>
   );
+=======
+
+export const LoadingSkeleton = () => {
+  <>
+    {[1, 2, 3, 4].map((i) => (
+      <SidebarMenuItem key={i}>
+        <SidebarMenuButton disabled>
+          <Skeleton className="size-6 rounded-full shrink-0" />
+          <Skeleton className="h-4 w-full" />
+        </SidebarMenuButton>
+      </SidebarMenuItem>
+    ))}
+  </>;
+>>>>>>> 9042b3a4e3e61a8b1d4e77cb783c7bdf2f5833ff
 };
 
 export const SubscriptionsSection = () => {
