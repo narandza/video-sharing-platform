@@ -1,7 +1,7 @@
+import { Skeleton } from "@/components/ui/skeleton";
 import { UserAvatar } from "@/components/user-avatar";
 
 import { SubscriptionButton } from "./subscription-button";
-import { Skeleton } from "@/components/ui/skeleton";
 
 interface SubscriptionItemProps {
   name: string;
