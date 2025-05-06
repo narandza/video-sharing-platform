@@ -6,6 +6,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import { trpc } from "@/trpc/client";
 import { DEFAULT_LIMIT } from "@/constants";
 import { toast } from "sonner";
+import Link from "next/link";
 
 export const SubscriptionsSection = () => {
   return (
@@ -46,5 +47,20 @@ const SubscriptionsSuspense = () => {
     },
   });
 
-  return <>UI</>;
+  return (
+    <>
+      <div className="flex flex-col gap-4">
+        {subscriptions.pages
+          .flatMap((page) => page.items)
+          .map((subscription) => (
+            <Link
+              key={subscription.creatorId}
+              href={`/user/${subscription.user.id}`}
+            >
+              {JSON.stringify(subscription)}
+            </Link>
+          ))}
+      </div>
+    </>
+  );
 };
