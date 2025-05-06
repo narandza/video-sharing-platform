@@ -1,4 +1,5 @@
 import { UserAvatar } from "@/components/user-avatar";
+
 import { SubscriptionButton } from "./subscription-button";
 
 interface SubscriptionItemProps {
@@ -28,7 +29,7 @@ export const SubscriptionItem = ({
           <div>
             <h3 className="text-sm">{name}</h3>
             <p className="text-xs text-muted-foreground">
-              {subscriberCount} subscribers
+              {subscriberCount.toLocaleString()} subscribers
             </p>
           </div>
 

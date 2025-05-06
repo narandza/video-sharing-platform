@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ListIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 import {
@@ -12,10 +13,9 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { trpc } from "@/trpc/client";
-import { UserAvatar } from "@/components/user-avatar";
 import { DEFAULT_LIMIT } from "@/constants";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ListIcon } from "lucide-react";
+import { UserAvatar } from "@/components/user-avatar";
 
 export const LoadingSkeleton = () => {
   return (
