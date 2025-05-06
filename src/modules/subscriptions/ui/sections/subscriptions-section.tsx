@@ -7,6 +7,7 @@ import { trpc } from "@/trpc/client";
 import { DEFAULT_LIMIT } from "@/constants";
 import { toast } from "sonner";
 import Link from "next/link";
+import { SubscriptionItem } from "../components/subscription-item";
 
 export const SubscriptionsSection = () => {
   return (
@@ -55,9 +56,17 @@ const SubscriptionsSuspense = () => {
           .map((subscription) => (
             <Link
               key={subscription.creatorId}
-              href={`/user/${subscription.user.id}`}
+              href={`/users/${subscription.user.id}`}
             >
-              {JSON.stringify(subscription)}
+              <SubscriptionItem
+                name={subscription.user.name}
+                imageUrl={subscription.user.imageUrl}
+                subscriberCount={subscription.user.subscriberCount}
+                onUnsubscribe={() => {
+                  unsubscribe.mutate({ userId: subscription.creatorId });
+                }}
+                disabled={unsubscribe.isPending}
+              />
             </Link>
           ))}
       </div>
