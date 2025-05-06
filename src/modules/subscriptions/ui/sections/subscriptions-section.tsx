@@ -9,7 +9,10 @@ import { trpc } from "@/trpc/client";
 import { DEFAULT_LIMIT } from "@/constants";
 import { InfiniteScroll } from "@/components/infinite-scroll";
 
-import { SubscriptionItem } from "../components/subscription-item";
+import {
+  SubscriptionItem,
+  SubscriptionItemSkeleton,
+} from "../components/subscription-item";
 
 export const SubscriptionsSection = () => {
   return (
@@ -22,7 +25,13 @@ export const SubscriptionsSection = () => {
 };
 
 const SubscriptionsSkeleton = () => {
-  return <>Loading</>;
+  return (
+    <div className="flex flex-col gap-4">
+      {Array.from({ length: 8 }).map((_, index) => (
+        <SubscriptionItemSkeleton key={index} />
+      ))}
+    </div>
+  );
 };
 
 const SubscriptionsSuspense = () => {
