@@ -8,6 +8,7 @@ import { DEFAULT_LIMIT } from "@/constants";
 import { toast } from "sonner";
 import Link from "next/link";
 import { SubscriptionItem } from "../components/subscription-item";
+import { InfiniteScroll } from "@/components/infinite-scroll";
 
 export const SubscriptionsSection = () => {
   return (
@@ -70,6 +71,11 @@ const SubscriptionsSuspense = () => {
             </Link>
           ))}
       </div>
+      <InfiniteScroll
+        hasNextPage={query.hasNextPage}
+        isFetchingNextPage={query.isFetchingNextPage}
+        fetchNextPage={query.fetchNextPage}
+      />
     </>
   );
 };
