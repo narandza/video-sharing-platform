@@ -5,6 +5,7 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 import { AuthButton } from "@/modules/auth/ui/components/auth-button";
 
 import { StudioUploadModal } from "../studio-upload-modal";
+import { LOGO_HEIGHT, LOGO_WIDTH } from "@/constants";
 
 export const StudioNavbar = () => {
   return (
@@ -14,9 +15,13 @@ export const StudioNavbar = () => {
         <div className="flex items-center flex-shrink-0">
           <SidebarTrigger />
           <Link href="/studio">
-            {/* TODO: Add constants */}
             <div className="p-4 flex items-center gap-1">
-              <Image src="/logo.svg" alt="Logo" width={32} height={32} />
+              <Image
+                src="/logo.svg"
+                alt="Logo"
+                width={LOGO_WIDTH}
+                height={LOGO_HEIGHT}
+              />
               <p className="text-xl font-semibold tracking-tighter">Studio</p>
             </div>
           </Link>
