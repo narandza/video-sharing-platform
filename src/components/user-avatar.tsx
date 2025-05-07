@@ -5,7 +5,6 @@ import { AvatarImage } from "@radix-ui/react-avatar";
 
 import { Avatar } from "./ui/avatar";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const avatarVariants = cva("", {
   variants: {
     size: {
