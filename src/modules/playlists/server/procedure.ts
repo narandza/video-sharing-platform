@@ -461,7 +461,10 @@ export const playlistsRouter = createTRPCRouter({
           })
           .from(videoReactions)
           .where(
-            and(eq(videoViews.userId, userId), eq(videoReactions.type, "like"))
+            and(
+              eq(videoReactions.userId, userId),
+              eq(videoReactions.type, "like")
+            )
           )
       );
 
@@ -489,6 +492,7 @@ export const playlistsRouter = createTRPCRouter({
         })
         .from(videos)
         .innerJoin(users, eq(videos.userId, users.id))
+        .innerJoin(videoViews, eq(videoViews.videoId, videos.id))
         .innerJoin(
           viewerVideoReactions,
           eq(viewerVideoReactions.videoId, videos.id)
