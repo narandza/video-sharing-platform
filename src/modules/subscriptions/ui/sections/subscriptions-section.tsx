@@ -59,6 +59,8 @@ const SubscriptionsSuspense = () => {
     },
   });
 
+  //TODO: POGLEDAJ ZA SKELETON
+
   return (
     <>
       <div className="flex flex-col gap-4">

@@ -15,6 +15,7 @@ export const SubscriptionItemSkeleton = () => {
   return (
     <div className="flex items-start gap-4">
       <Skeleton className="size-10 rounded-full" />
+
       <div className="flex-1">
         <div className="flex items-center justify-between">
           <div>
