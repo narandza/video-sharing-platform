@@ -1,6 +1,9 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 import { cn } from "@/lib/utils";
+
 import { Badge } from "./ui/badge";
 import {
   Carousel,
@@ -10,7 +13,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "./ui/carousel";
-import { useEffect, useState } from "react";
 import { Skeleton } from "./ui/skeleton";
 
 interface FilterCarouselProps {
