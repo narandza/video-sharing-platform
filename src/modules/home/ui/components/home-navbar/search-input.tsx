@@ -1,8 +1,8 @@
 "use client";
 
 import React, { Suspense, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
 import { SearchIcon, XIcon } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import { APP_URL } from "@/constants";
 import { Button } from "@/components/ui/button";
