@@ -10,14 +10,24 @@ import {
   VideoGridCardSkeleton,
 } from "@/modules/videos/ui/components/video-grid-card";
 import { InfiniteScroll } from "@/components/infinite-scroll";
+import { TriangleAlertIcon } from "lucide-react";
 
 export const TrendingVideosSection = () => {
   return (
     <Suspense fallback={<TrendingVideosSectionSkeleton />}>
-      <ErrorBoundary fallback={<p>Error</p>}>
+      <ErrorBoundary fallback={<TrendingVideosSectionError />}>
         <TrendingVideosSectionSuspense />
       </ErrorBoundary>
     </Suspense>
+  );
+};
+
+const TrendingVideosSectionError = () => {
+  return (
+    <div className="flex flex-col items-center justify-center">
+      <TriangleAlertIcon className="size-10 " />
+      <p className="text-sm text-muted-foreground mt-2">Something went wrong</p>
+    </div>
   );
 };
 

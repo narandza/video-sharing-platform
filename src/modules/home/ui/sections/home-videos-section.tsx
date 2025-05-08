@@ -29,8 +29,8 @@ export const HomeVideosSection = ({ categoryId }: HomeVideosSectionProps) => {
 const HomeVideosSectionError = () => {
   return (
     <div className="flex flex-col items-center justify-center">
-      <TriangleAlertIcon className="size-6 " />
-      <p className="text-sm text-muted-foreground">Something went wrong</p>
+      <TriangleAlertIcon className="size-10" />
+      <p className="text-sm text-muted-foreground mt-2">Something went wrong</p>
     </div>
   );
 };
