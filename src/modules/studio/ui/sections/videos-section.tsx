@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Suspense } from "react";
 import { format } from "date-fns";
-import { Globe2Icon, LockIcon } from "lucide-react";
+import { Globe2Icon, LockIcon, TriangleAlertIcon } from "lucide-react";
 import { ErrorBoundary } from "react-error-boundary";
 
 import {
@@ -24,10 +24,19 @@ import { VideoThumbnail } from "@/modules/videos/ui/components/video-thumbnail";
 export const VideosSection = () => {
   return (
     <Suspense fallback={<VideosSectionSkeleton />}>
-      <ErrorBoundary fallback={<p>Error</p>}>
+      <ErrorBoundary fallback={<VideosSectionError />}>
         <VideosSectionSuspense />
       </ErrorBoundary>
     </Suspense>
+  );
+};
+
+const VideosSectionError = () => {
+  return (
+    <div className="flex flex-col items-center justify-center">
+      <TriangleAlertIcon className="size-10 " />
+      <p className="text-sm text-muted-foreground mt-2">Something went wrong</p>
+    </div>
   );
 };
 
