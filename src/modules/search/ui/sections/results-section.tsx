@@ -14,6 +14,7 @@ import {
   VideoGridCardSkeleton,
 } from "@/modules/videos/ui/components/video-grid-card";
 import { InfiniteScroll } from "@/components/infinite-scroll";
+import { TriangleAlertIcon } from "lucide-react";
 
 interface ResultsSectionProps {
   query: string | undefined;
@@ -26,10 +27,19 @@ export const ResultsSection = ({ query, categoryId }: ResultsSectionProps) => {
       key={`${query}-${categoryId}`}
       fallback={<ResultSectionSkeleton />}
     >
-      <ErrorBoundary fallback={<p>Error</p>}>
+      <ErrorBoundary fallback={<ResultsSectionError />}>
         <ResultsSectionSuspense query={query} categoryId={categoryId} />
       </ErrorBoundary>
     </Suspense>
+  );
+};
+
+const ResultsSectionError = () => {
+  return (
+    <div className="flex flex-col items-center justify-center">
+      <TriangleAlertIcon className="size-10 " />
+      <p className="text-sm text-muted-foreground mt-2">Something went wrong</p>
+    </div>
   );
 };
 
