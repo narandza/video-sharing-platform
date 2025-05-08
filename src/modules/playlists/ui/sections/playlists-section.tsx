@@ -11,14 +11,24 @@ import {
   PlaylistGridCard,
   PlaylistGridCardSkeleton,
 } from "../components/playlist-grid-card";
+import { TriangleAlertIcon } from "lucide-react";
 
 export const PlaylistsSection = () => {
   return (
     <Suspense fallback={<PlaylistsSectionSkeleton />}>
-      <ErrorBoundary fallback={<p>Error</p>}>
+      <ErrorBoundary fallback={<PlaylistsSectionError />}>
         <PlaylistsSectionSuspense />
       </ErrorBoundary>
     </Suspense>
+  );
+};
+
+const PlaylistsSectionError = () => {
+  return (
+    <div className="flex flex-col items-center justify-center">
+      <TriangleAlertIcon className="size-10 " />
+      <p className="text-sm text-muted-foreground mt-2">Something went wrong</p>
+    </div>
   );
 };
 
