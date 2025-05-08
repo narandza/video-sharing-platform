@@ -11,6 +11,7 @@ import {
   RotateCcwIcon,
   SparklesIcon,
   TrashIcon,
+  TriangleAlertIcon,
 } from "lucide-react";
 import { z } from "zod";
 import Link from "next/link";
@@ -64,10 +65,19 @@ interface FormSectionProps {
 export const FormSection = ({ videoId }: FormSectionProps) => {
   return (
     <Suspense fallback={<FormSectionSkeleton />}>
-      <ErrorBoundary fallback={<p>Error</p>}>
+      <ErrorBoundary fallback={<FormSectionError />}>
         <FormSectionSuspense videoId={videoId} />
       </ErrorBoundary>
     </Suspense>
+  );
+};
+
+const FormSectionError = () => {
+  return (
+    <div className="flex flex-col items-center justify-center">
+      <TriangleAlertIcon className="size-10 " />
+      <p className="text-sm text-muted-foreground mt-2">Something went wrong</p>
+    </div>
   );
 };
 
