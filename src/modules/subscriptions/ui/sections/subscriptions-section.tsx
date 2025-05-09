@@ -13,18 +13,28 @@ import {
   SubscriptionItem,
   SubscriptionItemSkeleton,
 } from "../components/subscription-item";
+import { TriangleAlertIcon } from "lucide-react";
 
 export const SubscriptionsSection = () => {
   return (
-    <Suspense fallback={<SubscriptionsSkeleton />}>
-      <ErrorBoundary fallback={<p>Error</p>}>
-        <SubscriptionsSuspense />
+    <Suspense fallback={<SubscriptionsSectionSkeleton />}>
+      <ErrorBoundary fallback={<SubscriptionsSectionError />}>
+        <SubscriptionsSectionSuspense />
       </ErrorBoundary>
     </Suspense>
   );
 };
 
-const SubscriptionsSkeleton = () => {
+const SubscriptionsSectionError = () => {
+  return (
+    <div className="flex flex-col items-center justify-center">
+      <TriangleAlertIcon className="size-10 " />
+      <p className="text-sm text-muted-foreground mt-2">Something went wrong</p>
+    </div>
+  );
+};
+
+const SubscriptionsSectionSkeleton = () => {
   return (
     <div className="flex flex-col gap-4">
       {Array.from({ length: 8 }).map((_, index) => (
@@ -34,7 +44,7 @@ const SubscriptionsSkeleton = () => {
   );
 };
 
-const SubscriptionsSuspense = () => {
+const SubscriptionsSectionSuspense = () => {
   const utils = trpc.useUtils();
 
   const [subscriptions, query] =
