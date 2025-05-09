@@ -15,6 +15,7 @@ import {
   VideoGridCard,
   VideoGridCardSkeleton,
 } from "../components/video-grid-card";
+import { TriangleAlertIcon } from "lucide-react";
 
 interface SuggestionsSectionProps {
   videoId: string;
@@ -27,10 +28,19 @@ export const SuggestionsSection = ({
 }: SuggestionsSectionProps) => {
   return (
     <Suspense fallback={<SuggestionsSectionSkeleton />}>
-      <ErrorBoundary fallback={<p>Error</p>}>
+      <ErrorBoundary fallback={<SuggestionsSectionError />}>
         <SuggestionsSectionSuspense videoId={videoId} isManual={isManual} />
       </ErrorBoundary>
     </Suspense>
+  );
+};
+
+const SuggestionsSectionError = () => {
+  return (
+    <div className="flex flex-col items-center justify-center">
+      <TriangleAlertIcon className="size-10 " />
+      <p className="text-sm text-muted-foreground mt-2">Something went wrong</p>
+    </div>
   );
 };
 
