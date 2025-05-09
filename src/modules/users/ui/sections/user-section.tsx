@@ -14,6 +14,7 @@ import {
   UserPageBanner,
   UserPageBannerSkeleton,
 } from "../components/user-page-banner";
+import { TriangleAlertIcon } from "lucide-react";
 
 interface UserViewProps {
   userId: string;
@@ -22,10 +23,19 @@ interface UserViewProps {
 export const UserSection = ({ userId }: UserViewProps) => {
   return (
     <Suspense fallback={<UserSectionSkeleton />}>
-      <ErrorBoundary fallback={<p>Error</p>}>
+      <ErrorBoundary fallback={<UserSectionError />}>
         <UserSectionSuspense userId={userId} />
       </ErrorBoundary>
     </Suspense>
+  );
+};
+
+const UserSectionError = () => {
+  return (
+    <div className="flex flex-col items-center justify-center">
+      <TriangleAlertIcon className="size-10 " />
+      <p className="text-sm text-muted-foreground mt-2">Something went wrong</p>
+    </div>
   );
 };
 
