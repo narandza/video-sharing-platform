@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense } from "react";
-import { Loader2Icon } from "lucide-react";
+import { Loader2Icon, TriangleAlertIcon } from "lucide-react";
 import { ErrorBoundary } from "react-error-boundary";
 
 import { trpc } from "@/trpc/client";
@@ -17,10 +17,19 @@ interface CommentSectionProps {
 export const CommentsSection = ({ videoId }: CommentSectionProps) => {
   return (
     <Suspense fallback={<CommentSectionSkeleton />}>
-      <ErrorBoundary fallback={<p>error</p>}>
+      <ErrorBoundary fallback={<CommentsSectionError />}>
         <CommentsSectionSuspense videoId={videoId} />
       </ErrorBoundary>
     </Suspense>
+  );
+};
+
+const CommentsSectionError = () => {
+  return (
+    <div className="flex flex-col items-center justify-center">
+      <TriangleAlertIcon className="size-10 " />
+      <p className="text-sm text-muted-foreground mt-2">Something went wrong</p>
+    </div>
   );
 };
 
