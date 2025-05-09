@@ -10,6 +10,7 @@ import {
   VideoGridCardSkeleton,
 } from "@/modules/videos/ui/components/video-grid-card";
 import { InfiniteScroll } from "@/components/infinite-scroll";
+import { TriangleAlertIcon } from "lucide-react";
 
 interface VideosSectionProps {
   userId: string;
@@ -18,10 +19,19 @@ interface VideosSectionProps {
 export const VideosSection = ({ userId }: VideosSectionProps) => {
   return (
     <Suspense fallback={<VideosSectionSkeleton />}>
-      <ErrorBoundary fallback={<p>Error</p>}>
+      <ErrorBoundary fallback={<VideosSectionError />}>
         <VideosSectionSuspense userId={userId} />
       </ErrorBoundary>
     </Suspense>
+  );
+};
+
+const VideosSectionError = () => {
+  return (
+    <div className="flex flex-col items-center justify-center">
+      <TriangleAlertIcon className="size-10 " />
+      <p className="text-sm text-muted-foreground mt-2">Something went wrong</p>
+    </div>
   );
 };
 
