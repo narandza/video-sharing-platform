@@ -1,6 +1,7 @@
 "use client";
 
 import { Suspense } from "react";
+import { TriangleAlertIcon } from "lucide-react";
 import { ErrorBoundary } from "react-error-boundary";
 
 import { trpc } from "@/trpc/client";
@@ -10,7 +11,6 @@ import {
   VideoGridCardSkeleton,
 } from "@/modules/videos/ui/components/video-grid-card";
 import { InfiniteScroll } from "@/components/infinite-scroll";
-import { TriangleAlertIcon } from "lucide-react";
 
 interface HomeVideosSectionProps {
   categoryId?: string;

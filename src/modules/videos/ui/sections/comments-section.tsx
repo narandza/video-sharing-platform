@@ -1,8 +1,8 @@
 "use client";
 
 import { Suspense } from "react";
-import { Loader2Icon, TriangleAlertIcon } from "lucide-react";
 import { ErrorBoundary } from "react-error-boundary";
+import { Loader2Icon, TriangleAlertIcon } from "lucide-react";
 
 import { trpc } from "@/trpc/client";
 import { DEFAULT_LIMIT } from "@/constants";

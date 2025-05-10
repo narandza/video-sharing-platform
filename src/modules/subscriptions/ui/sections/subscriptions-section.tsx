@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { toast } from "sonner";
 import { Suspense } from "react";
+import { TriangleAlertIcon } from "lucide-react";
 import { ErrorBoundary } from "react-error-boundary";
 
 import { trpc } from "@/trpc/client";
@@ -13,7 +14,6 @@ import {
   SubscriptionItem,
   SubscriptionItemSkeleton,
 } from "../components/subscription-item";
-import { TriangleAlertIcon } from "lucide-react";
 
 export const SubscriptionsSection = () => {
   return (

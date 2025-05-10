@@ -2,6 +2,7 @@
 
 import { toast } from "sonner";
 import { Suspense } from "react";
+import { TriangleAlertIcon } from "lucide-react";
 import { ErrorBoundary } from "react-error-boundary";
 
 import { trpc } from "@/trpc/client";
@@ -15,7 +16,6 @@ import {
   VideoRowCardSkeleton,
 } from "@/modules/videos/ui/components/video-row-card";
 import { InfiniteScroll } from "@/components/infinite-scroll";
-import { TriangleAlertIcon } from "lucide-react";
 
 interface VideosSectionProps {
   playlistId: string;

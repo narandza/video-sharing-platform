@@ -1,6 +1,7 @@
 "use client";
 
 import { Suspense } from "react";
+import { TriangleAlertIcon } from "lucide-react";
 import { ErrorBoundary } from "react-error-boundary";
 
 import { trpc } from "@/trpc/client";
@@ -14,7 +15,6 @@ import {
   UserPageBanner,
   UserPageBannerSkeleton,
 } from "../components/user-page-banner";
-import { TriangleAlertIcon } from "lucide-react";
 
 interface UserViewProps {
   userId: string;

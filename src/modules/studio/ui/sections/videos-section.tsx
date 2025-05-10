@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { Suspense } from "react";
 import { format } from "date-fns";
-import { Globe2Icon, LockIcon, TriangleAlertIcon } from "lucide-react";
 import { ErrorBoundary } from "react-error-boundary";
+import { Globe2Icon, LockIcon, TriangleAlertIcon } from "lucide-react";
 
 import {
   Table,

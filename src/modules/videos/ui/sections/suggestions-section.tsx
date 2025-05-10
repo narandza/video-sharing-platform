@@ -1,6 +1,7 @@
 "use client";
 
 import { Suspense } from "react";
+import { TriangleAlertIcon } from "lucide-react";
 import { ErrorBoundary } from "react-error-boundary";
 
 import { trpc } from "@/trpc/client";
@@ -15,7 +16,6 @@ import {
   VideoGridCard,
   VideoGridCardSkeleton,
 } from "../components/video-grid-card";
-import { TriangleAlertIcon } from "lucide-react";
 
 interface SuggestionsSectionProps {
   videoId: string;

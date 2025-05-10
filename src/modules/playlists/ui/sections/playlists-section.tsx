@@ -1,6 +1,7 @@
 "use client";
 
 import { Suspense } from "react";
+import { TriangleAlertIcon } from "lucide-react";
 import { ErrorBoundary } from "react-error-boundary";
 
 import { trpc } from "@/trpc/client";
@@ -11,7 +12,6 @@ import {
   PlaylistGridCard,
   PlaylistGridCardSkeleton,
 } from "../components/playlist-grid-card";
-import { TriangleAlertIcon } from "lucide-react";
 
 export const PlaylistsSection = () => {
   return (

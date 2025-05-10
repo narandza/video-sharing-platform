@@ -1,6 +1,7 @@
 "use client";
 
 import { Suspense } from "react";
+import { TriangleAlertIcon } from "lucide-react";
 import { ErrorBoundary } from "react-error-boundary";
 
 import { cn } from "@/lib/utils";
@@ -10,7 +11,6 @@ import { useAuth } from "@clerk/nextjs";
 import { VideoBanner } from "../components/video-banner";
 import { VideoPlayer, VideoPlayerSkeleton } from "../components/video-player";
 import { VideoTopRow, VideoTopRowSkeleton } from "../components/video-top-row";
-import { TriangleAlertIcon } from "lucide-react";
 
 interface VideoSectionProps {
   videoId: string;
