@@ -1,8 +1,16 @@
 import { DEFAULT_LIMIT } from "@/constants";
 import { HydrateClient, trpc } from "@/trpc/server";
 import { SubscriptionsView } from "@/modules/home/ui/views/subscriptions-view";
+import { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
+
+export const generateMetadata = async (): Promise<Metadata> => {
+  return {
+    title: "Subscriptions - New Tube",
+    description: "See all the channels and creators you're subscribed to.",
+  };
+};
 
 const Page = async () => {
   void trpc.videos.getManySubscribed.prefetchInfinite({
