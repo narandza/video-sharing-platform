@@ -15,7 +15,7 @@ export const generateMetadata = async ({
   const user = await caller.users.getOne({ id: (await params).userId });
 
   return {
-    title: `${user.name} - Profile`,
+    title: `${user.name} - New Tube`,
     description: `Explore videos and content by ${user.name}.`,
   };
 };
