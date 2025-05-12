@@ -1,12 +1,24 @@
 import { DEFAULT_LIMIT } from "@/constants";
-import { HydrateClient, trpc } from "@/trpc/server";
+import { HydrateClient, caller, trpc } from "@/trpc/server";
 import { UserView } from "@/modules/users/ui/views/user-view";
+import { Metadata } from "next";
 
 interface PageProps {
   params: Promise<{
     userId: string;
   }>;
 }
+
+export const generateMetadata = async ({
+  params,
+}: PageProps): Promise<Metadata> => {
+  const user = await caller.users.getOne({ id: (await params).userId });
+
+  return {
+    title: `${user.name} - Profile`,
+    description: `Explore videos and content by ${user.name}.`,
+  };
+};
 
 const Page = async ({ params }: PageProps) => {
   const { userId } = await params;
