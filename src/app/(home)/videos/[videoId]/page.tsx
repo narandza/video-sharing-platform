@@ -1,6 +1,7 @@
 import { DEFAULT_LIMIT } from "@/constants";
-import { HydrateClient, trpc } from "@/trpc/server";
+import { HydrateClient, caller, trpc } from "@/trpc/server";
 import { VideoView } from "@/modules/videos/ui/views/video-view";
+import { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
 interface PageProps {
@@ -8,6 +9,18 @@ interface PageProps {
     videoId: string;
   }>;
 }
+
+export const generateMetadata = async ({
+  params,
+}: PageProps): Promise<Metadata> => {
+  const { videoId } = await params;
+  const video = await caller.videos.getOne({ id: videoId });
+
+  return {
+    title: `${video.title} - New Tube`,
+    description: `Watch ${video.title}`,
+  };
+};
 
 const Page = async ({ params }: PageProps) => {
   const { videoId } = await params;
