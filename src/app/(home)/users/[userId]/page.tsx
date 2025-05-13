@@ -1,7 +1,8 @@
+import { Metadata } from "next";
+
 import { DEFAULT_LIMIT } from "@/constants";
 import { HydrateClient, caller, trpc } from "@/trpc/server";
 import { UserView } from "@/modules/users/ui/views/user-view";
-import { Metadata } from "next";
 
 interface PageProps {
   params: Promise<{

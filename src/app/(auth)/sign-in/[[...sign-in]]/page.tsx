@@ -1,5 +1,6 @@
-import { SignIn } from "@clerk/nextjs";
 import { Metadata } from "next";
+
+import { SignIn } from "@clerk/nextjs";
 
 export const generateMetadata = async (): Promise<Metadata> => {
   return {

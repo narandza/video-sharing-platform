@@ -1,7 +1,8 @@
+import { Metadata } from "next";
+
 import { DEFAULT_LIMIT } from "@/constants";
 import { HydrateClient, caller, trpc } from "@/trpc/server";
 import { VideoView } from "@/modules/videos/ui/views/video-view";
-import { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
 interface PageProps {
