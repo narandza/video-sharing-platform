@@ -12,7 +12,9 @@ interface PageProps {
 export const generateMetadata = async ({
   params,
 }: PageProps): Promise<Metadata> => {
-  const user = await caller.users.getOne({ id: (await params).userId });
+  const { userId } = await params;
+
+  const user = await caller.users.getOne({ id: userId });
 
   return {
     title: `${user.name} - New Tube`,
