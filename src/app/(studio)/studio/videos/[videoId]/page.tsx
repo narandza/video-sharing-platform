@@ -1,7 +1,15 @@
 import { HydrateClient, trpc } from "@/trpc/server";
 import { VideoView } from "@/modules/studio/ui/views/video-view";
+import { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
+
+export const generateMetadata = async (): Promise<Metadata> => {
+  return {
+    title: "Video Settings - New Tube",
+    description: "Modify your content",
+  };
+};
 
 interface PageProps {
   params: Promise<{ videoId: string }>;
