@@ -306,7 +306,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
                           className="rounded-full size-6 [&_svg]:size-3"
                           onClick={() => generateTitle.mutate({ id: videoId })}
                           disabled={
-                            !generateTitle.isPending || !video.muxTrackId
+                            generateTitle.isPending || !video.muxTrackId
                           }
                         >
                           {generateTitle.isPending ? (
