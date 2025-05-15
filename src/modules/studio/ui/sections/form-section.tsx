@@ -344,7 +344,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
                             generateDescription.mutate({ id: videoId })
                           }
                           disabled={
-                            !generateDescription.isPending || !video.muxTrackId
+                            generateDescription.isPending || !video.muxTrackId
                           }
                         >
                           {generateDescription.isPending ? (
